@@ -37,14 +37,14 @@ Reference herein to any specific commercial product, process, or service by trad
 Authors:
 
 Nathan Woodruff
-Juan Gallego-Caderon
 Jacob Meng
-Thomas Mosier
+Kaki Tamaddun
 Sarah Barrows
-Daniel Arai
+Juan Gallego-Calderon
+Thomas Mosier
+Ryan Harnish
 Muhammad Usman
-Zaki Tamaddun
-Rya Harnish
+Daniel Arai
 
 
 
