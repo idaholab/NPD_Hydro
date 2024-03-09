@@ -1,4 +1,11 @@
+"use client";
+
 import React from "react";
+
+// Hooks
+import { useState } from "react";
+
+// Components
 import Layers from "./layers/layers";
 import Weights from "./layers/weights";
 

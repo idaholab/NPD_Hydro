@@ -209,10 +209,11 @@ function Questionnaire() {
 
   async function getCounties(state) {
     return await axios
-      .post(`${url}/npd/counties`, {
+      .post(`api/questionnaire/counties`, {
         state: state,
       })
       .then((response) => {
+        // console.log(respinse);
         return response.data;
       })
       .catch((error) => {

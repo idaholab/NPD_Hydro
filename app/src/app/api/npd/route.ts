@@ -9,7 +9,6 @@ const base = process.env.NEXT_PUBLIC_DJANGO_HOST!;
 
 export const POST = async (req: Request, res: NextResponse) => {
   const body = await req.json();
-  console.log(base);
 
   let dams = await axios
     .post(`${base}/npd/inventory`, body)
@@ -18,7 +17,7 @@ export const POST = async (req: Request, res: NextResponse) => {
     })
     .catch((error) => {
       console.log("Error: " + error);
-      return error;
+      return NextResponse.json(error);
     });
   return NextResponse.json(dams);
 };

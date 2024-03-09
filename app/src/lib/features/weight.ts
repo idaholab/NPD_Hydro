@@ -21,11 +21,10 @@ const initialState: weights = {
 };
 
 export const weightSlice = createSlice({
-  name: "weights",
+  name: "weight",
   initialState: initialState,
   reducers: {
     dispatchWeights: (state, action) => {
-      console.log(action);
       let category = action.payload.category;
       state = {
         ...state,
@@ -34,10 +33,11 @@ export const weightSlice = createSlice({
           [category]: action.payload.weight,
         },
       };
+      return state;
     },
     benefit: (state, action) => {
-      console.log(action);
       state.benefit = action.payload;
+      return state;
     },
   },
 });

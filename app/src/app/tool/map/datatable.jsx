@@ -5,24 +5,16 @@ import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 
-// Theme
-import { useTheme } from "@mui/material/styles";
-
 // Datagrid Slots
-import Toolbar from "./Toolbar";
+import Toolbar from "./components/toolbar";
 
 // Store
-import { useSelector } from "react-redux";
-import { selectPshLayers } from "../../Store/Slices/pshSlice";
-
-import "./style.css";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 
 function DataTable(props) {
   let [pageSize, setPageSize] = useState(5);
 
-  const theme = useTheme();
-
-  const pshSelector = useSelector(selectPshLayers);
+  const pshSelector = useAppSelector((state) => state.psh);
 
   useEffect(() => {
     setPageSize(10);
@@ -161,249 +153,122 @@ function DataTable(props) {
 
   return (
     <Box sx={{ padding: "1rem 0" }}>
-      {theme.palette.mode === "light" ? (
-        <DataGrid
-          sx={{
-            width: "calc(100vw / 1.5)",
-            backgroundColor: "#FFFFFF",
-            "& ::-webkit-scrollbar": {
-              width: "5px",
-              background: "#9a9a9a",
-            },
-            "& ::-webkit-scrollbar-thumb": {
-              borderRadius: "5px",
-              backgroundColor: "#7a7a7a",
-            },
-          }}
-          columns={columns}
-          slots={{ toolbar: Toolbar }}
-          experimentalFeatures={{ columnGrouping: true }}
-          columnGroupingModel={[
-            {
-              groupId: "Owner Information",
-              children: [
-                {
-                  field: "owner_name",
-                },
-                {
-                  field: "fed_reg",
-                },
-                {
-                  field: "owner_type",
-                },
-              ],
-            },
-            {
-              groupId: "Individual Scores",
-              children: [
-                {
-                  field: "comm_score",
-                },
-                {
-                  field: "env_score",
-                },
-                {
-                  field: "grid_score",
-                },
-                {
-                  field: "industry_score",
-                },
-              ],
-            },
-            {
-              groupId: "Feasibility Scores",
-              children: [
-                {
-                  field: "batteries_score",
-                },
-                {
-                  field: "h2_feasibility_score",
-                },
-                {
-                  field: "psh_feasibility",
-                },
-              ],
-            },
-            {
-              groupId: "Land Use Restrictions",
-              children: [
-                {
-                  field: "crit_hab",
-                },
-                {
-                  field: "prot_land",
-                },
-                {
-                  field: "imp_stream",
-                },
-              ],
-            },
-            {
-              groupId: "Grid Information",
-              children: [
-                {
-                  field: "cap_mw",
-                },
-                {
-                  field: "dist_subst",
-                },
-              ],
-            },
-            {
-              groupId: "Economic Features",
-              children: [
-                {
-                  field: "elec_prc",
-                },
-                {
-                  field: "wholesale_prc",
-                },
-                {
-                  field: "hyd_fin_ct",
-                },
-                {
-                  field: "hyd_reg_ct",
-                },
-              ],
-            },
-          ]}
-          initialState={{
-            pagination: { paginationModel: { pageSize: 10 } },
-            columns: {
-              columnVisibilityModel: {
-                psh_feasibility: pshSelector["Include PSH Feasibility"],
+      <DataGrid
+        sx={{
+          width: "calc(100vw / 1.5)",
+          backgroundColor: "#FFFFFF",
+        }}
+        columns={columns}
+        slots={{ toolbar: Toolbar }}
+        experimentalFeatures={{ columnGrouping: true }}
+        columnGroupingModel={[
+          {
+            groupId: "Owner Information",
+            children: [
+              {
+                field: "owner_name",
               },
-            },
-          }}
-          autoHeight={true}
-          rows={props.dams}
-          onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-          pageSizeOptions={[10, 25, 50, 100]}
-          pageSize={pageSize}
-          getRowId={(row) => {
-            return row.objectid;
-          }}
-          getRowHeight={() => "auto"}
-          getEstimatedRowHeight={() => 52}
-        ></DataGrid>
-      ) : (
-        <DataGrid
-          sx={{
-            width: "calc(100vw / 1.5)",
-            backgroundColor: "#272727",
-          }}
-          columns={columns}
-          slots={{ toolbar: Toolbar }}
-          experimentalFeatures={{ columnGrouping: true }}
-          columnGroupingModel={[
-            {
-              groupId: "Owner Information",
-              children: [
-                {
-                  field: "owner_name",
-                },
-                {
-                  field: "fed_reg",
-                },
-                {
-                  field: "owner_type",
-                },
-              ],
-            },
-            {
-              groupId: "Individual Scores",
-              children: [
-                {
-                  field: "comm_score",
-                },
-                {
-                  field: "env_score",
-                },
-                {
-                  field: "grid_score",
-                },
-                {
-                  field: "industry_score",
-                },
-              ],
-            },
-            {
-              groupId: "Feasibility Scores",
-              children: [
-                {
-                  field: "batteries_score",
-                },
-                {
-                  field: "h2_feasibility_score",
-                },
-                {
-                  field: "psh_feasibility",
-                },
-              ],
-            },
-            {
-              groupId: "Land Use Restrictions",
-              children: [
-                {
-                  field: "crit_hab",
-                },
-                {
-                  field: "prot_land",
-                },
-                {
-                  field: "imp_stream",
-                },
-              ],
-            },
-            {
-              groupId: "Grid Information",
-              children: [
-                {
-                  field: "cap_mw",
-                },
-                {
-                  field: "dist_subst",
-                },
-              ],
-            },
-            {
-              groupId: "Economic Features",
-              children: [
-                {
-                  field: "elec_prc",
-                },
-                {
-                  field: "wholesale_prc",
-                },
-                {
-                  field: "hyd_fin_ct",
-                },
-                {
-                  field: "hyd_reg_ct",
-                },
-              ],
-            },
-          ]}
-          initialState={{
-            pagination: { paginationModel: { pageSize: 10 } },
-            columns: {
-              columnVisibilityModel: {
-                psh_feasibility: pshSelector["Include PSH Feasibility"],
+              {
+                field: "fed_reg",
               },
+              {
+                field: "owner_type",
+              },
+            ],
+          },
+          {
+            groupId: "Individual Scores",
+            children: [
+              {
+                field: "comm_score",
+              },
+              {
+                field: "env_score",
+              },
+              {
+                field: "grid_score",
+              },
+              {
+                field: "industry_score",
+              },
+            ],
+          },
+          {
+            groupId: "Feasibility Scores",
+            children: [
+              {
+                field: "batteries_score",
+              },
+              {
+                field: "h2_feasibility_score",
+              },
+              {
+                field: "psh_feasibility",
+              },
+            ],
+          },
+          {
+            groupId: "Land Use Restrictions",
+            children: [
+              {
+                field: "crit_hab",
+              },
+              {
+                field: "prot_land",
+              },
+              {
+                field: "imp_stream",
+              },
+            ],
+          },
+          {
+            groupId: "Grid Information",
+            children: [
+              {
+                field: "cap_mw",
+              },
+              {
+                field: "dist_subst",
+              },
+            ],
+          },
+          {
+            groupId: "Economic Features",
+            children: [
+              {
+                field: "elec_prc",
+              },
+              {
+                field: "wholesale_prc",
+              },
+              {
+                field: "hyd_fin_ct",
+              },
+              {
+                field: "hyd_reg_ct",
+              },
+            ],
+          },
+        ]}
+        initialState={{
+          pagination: { paginationModel: { pageSize: 10 } },
+          columns: {
+            columnVisibilityModel: {
+              psh_feasibility: pshSelector["Include PSH Feasibility"],
             },
-          }}
-          autoHeight={true}
-          rows={props.dams}
-          onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-          pageSizeOptions={[10, 25, 50, 100]}
-          pageSize={pageSize}
-          getRowId={(row) => {
-            return row.objectid;
-          }}
-          getRowHeight={() => "auto"}
-          getEstimatedRowHeight={() => 52}
-        ></DataGrid>
-      )}
+          },
+        }}
+        autoHeight={true}
+        rows={props.dams}
+        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+        pageSizeOptions={[10, 25, 50, 100]}
+        pageSize={pageSize}
+        getRowId={(row) => {
+          return row.objectid;
+        }}
+        getRowHeight={() => "auto"}
+        getEstimatedRowHeight={() => 52}
+      ></DataGrid>
     </Box>
   );
 }

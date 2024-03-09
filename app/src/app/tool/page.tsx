@@ -7,15 +7,21 @@ import React, { useCallback } from "react";
 import { useState, useEffect } from "react";
 
 // Helpers
-import { ValidateLayers } from "./helpers";
+import { validate, query } from "./helpers";
 
 // Material
-import { Alert, Box, Grid, Skeleton, Typography } from "@mui/material";
+import { Alert, Box, Drawer, Grid, Skeleton, Typography } from "@mui/material";
 
-// // Components
+// Next
+import dynamic from "next/dynamic";
+
+// Components
 import Sidebar from "./components/sidebar";
-// import Map from "./Map/Map";
-// import DataTable from "./Map/DataTable";
+import DataTable from "./map/datatable";
+// You have to disable server side rendering for ArcGIS maps because they need access to the DOM at runtime
+const Map = dynamic(() => import("./map/map"), {
+  ssr: false,
+});
 
 // Dependencies
 import axios from "axios";
@@ -38,12 +44,6 @@ function Tool() {
   const environmentalSelector = useAppSelector((state) => state.environmental);
   const gridSelector = useAppSelector((state) => state.grid);
   const industrySelector = useAppSelector((state) => state.industry);
-  const batterySelector = useAppSelector((state) => state.battery);
-  const hydrogenSelector = useAppSelector((state) => state.hydrogen);
-  const visibleSelector = useAppSelector((state) => state.visible);
-
-  // Weights
-  const weightSelector = useAppSelector((state) => state.weight);
 
   // Map
   const [data, setData] = useState();
@@ -54,11 +54,8 @@ function Tool() {
   // Validate Query
   const [valid, setValid] = useState(true);
 
-  // // API URL
-  // const url = process.env.NEXT_PUBLIC_DJANGO_HOST;
-
   // Logic
-  const [submit, setSubmit] = useState(true);
+  const [submit, setSubmit] = useState(false);
 
   // Hooks
   const submitCallback = useCallback(async () => {
@@ -74,45 +71,17 @@ function Tool() {
       action: "query npd",
     });
 
-    let validate = ValidateLayers(
+    let valid = validate(
       communitySelector,
       environmentalSelector,
       gridSelector,
       industrySelector
     );
 
-    setValid(validate);
+    setValid(valid);
 
-    if (validate) {
-      await axios
-        .post(
-          `api/npd`,
-          JSON.stringify({
-            layers: {
-              visibleLayers: visibleSelector,
-              communityLayers: communitySelector,
-              environmentalLayers: environmentalSelector,
-              gridLayers: gridSelector,
-              industryLayers: industrySelector,
-              batteryLayers: batterySelector,
-              hydrogenLayers: hydrogenSelector,
-            },
-            weights: weightSelector.weights,
-          })
-        )
-        .then((response) => {
-          setData(response.data);
-          if (response.data.dams) {
-            setDams(response.data.dams);
-            setRender(false);
-            setSubmit(false);
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    } else {
-      console.log("Invalid query");
+    if (valid) {
+      query();
     }
     // eslint-disable-next-line
   }, [submit]);
@@ -135,10 +104,10 @@ function Tool() {
   return (
     <Box>
       <Grid container sx={{ width: "100%" }}>
-        <Grid item xs={4}>
-          <Box sx={{ width: "100%", height: "100vh" }}></Box>
+        <Grid item xs={2} sm={3} md={3} lg={3}>
+          <Sidebar setSubmit={setSubmit} valid={valid} />
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={10} sm={9} md={9} lg={9}>
           <Box
             sx={{
               padding: "2rem 0",
@@ -150,62 +119,29 @@ function Tool() {
               alignItems: "center",
             }}
           >
-            {mobile ? (
-              <Box
-                sx={{
-                  width: "100%",
-                  position: "absolute",
-                  bottom: 0,
-                }}
-              >
-                <Alert severity="error">
-                  Please get on a desktop device to explore the map!
-                </Alert>
+            {dams ? (
+              <Box>
+                <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+                  Visualization
+                </Typography>
+                <Map data={data} setPopup={setPopup} />
+                <DataTable dams={dams} popup={popup}></DataTable>
               </Box>
-            ) : (
-              <Grid container sx={{ width: "100%" }}>
-                <Grid item xs={4}>
-                  <Box sx={{ width: "100%", height: "100vh" }}>
-                    <Sidebar setSubmit={setSubmit} valid={valid} />{" "}
-                  </Box>
-                </Grid>
-                <Grid item xs={8}>
-                  <Box
-                    sx={{
-                      padding: "2rem 0",
-                      position: "relative",
-                      top: "85px",
-                      width: "100%",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    {dams ? (
-                      <Box>
-                        <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-                          Visualization
-                        </Typography>
-                      </Box>
-                    ) : render && valid ? (
-                      <Box>
-                        <Skeleton
-                          variant="rectangular"
-                          width={window.innerWidth / 1.5}
-                          height={window.innerHeight / 1.75}
-                        />
-                        <br />
-                        <Skeleton
-                          variant="rectangular"
-                          width={window.innerWidth / 1.5}
-                          height={window.innerHeight / 2.75}
-                        />
-                      </Box>
-                    ) : null}
-                  </Box>
-                </Grid>
-              </Grid>
-            )}
+            ) : render && valid ? (
+              <Box>
+                <Skeleton
+                  variant="rectangular"
+                  width={window.innerWidth / 1.5}
+                  height={window.innerHeight / 1.75}
+                />
+                <br />
+                <Skeleton
+                  variant="rectangular"
+                  width={window.innerWidth / 1.5}
+                  height={window.innerHeight / 2.75}
+                />
+              </Box>
+            ) : null}
           </Box>
         </Grid>
       </Grid>

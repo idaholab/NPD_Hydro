@@ -148,9 +148,8 @@ function Weights() {
           <br />
           <br />
           <Slider
-            defaultValue={
-              priority == "community" ? 1 : weightSelector.community
-            }
+            defaultValue={0.5}
+            value={weightSelector.community}
             step={0.25}
             marks={marks}
             min={0}
@@ -249,9 +248,8 @@ function Weights() {
           <br />
           <br />
           <Slider
-            defaultValue={
-              priority == "environmental" ? 1 : weightSelector.environmental
-            }
+            defaultValue={0.5}
+            value={weightSelector.environmental}
             step={0.25}
             marks={marks}
             min={0}
@@ -349,7 +347,8 @@ function Weights() {
           <br />
           <br />
           <Slider
-            defaultValue={priority == "grid" ? 1 : weightSelector.grid}
+            defaultValue={0.5}
+            value={weightSelector.grid}
             step={0.25}
             marks={marks}
             min={0}
@@ -447,7 +446,8 @@ function Weights() {
           <br />
           <br />
           <Slider
-            defaultValue={priority == "industry" ? 1 : weightSelector.industry}
+            defaultValue={0.5}
+            value={weightSelector.industry}
             step={0.25}
             marks={marks}
             min={0}

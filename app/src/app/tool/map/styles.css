@@ -1,0 +1,15 @@
+.sticky-column {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+
+.esri-feature-content {
+  padding: 1rem;
+  overflow-y: scroll;
+  max-height: 200px;
+}
+
+calcite-action-bar {
+  display: none;
+}

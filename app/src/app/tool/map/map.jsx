@@ -1,9 +1,10 @@
+"use client";
+
 // React
 import React from "react";
 
 // Hooks
 import { useEffect, useMemo, useRef } from "react";
-import { useTheme } from "@mui/material/styles";
 
 // ESRI
 import { loadModules } from "esri-loader";
@@ -11,8 +12,8 @@ import { loadModules } from "esri-loader";
 // Material
 import { Box } from "@mui/system";
 
-// Style
-import "./style.css";
+// Styles
+import "./styles.css";
 
 // Helpers
 import {
@@ -43,17 +44,15 @@ import MapView from "@arcgis/core/views/MapView";
 import Expand from "@arcgis/core/widgets/Expand";
 import Legend from "@arcgis/core/widgets/Legend";
 
+// Axios
 import axios from "axios";
 
 export default function ArcGIS(props) {
   // GeoLayers
   const geoLayers = useMemo(() => [], []);
 
-  // GeoRefLayers
+  // Refs
   const geoRef = useRef([]);
-
-  // Theme
-  const theme = useTheme();
 
   useEffect(() => {
     (async () => {
@@ -166,8 +165,7 @@ export default function ArcGIS(props) {
         }
 
         const map = new Map({
-          basemap:
-            theme.palette.mode === "dark" ? "dark-gray-vector" : "topo-vector",
+          basemap: "topo-vector",
           layers: geoLayers,
         });
 
@@ -175,11 +173,17 @@ export default function ArcGIS(props) {
           container: "map",
           map: map,
           center: [-98, 41],
-          zoom: theme.palette.mode === "dark" ? 3 : 4,
+          zoom: 4,
         });
 
         view.ui.remove("attribution");
-        view.popup.autoCloseEnabled = true;
+        view.popup = {
+          dockEnabled: true,
+          dockOptions: {
+            buttonEnabled: true,
+            breakpoint: false,
+          },
+        };
 
         const legend = new Expand({
           content: new Legend({
@@ -200,28 +204,17 @@ export default function ArcGIS(props) {
     })();
 
     return;
-  }, [props.data, geoLayers, theme]);
+  }, [props.data, geoLayers]);
 
   return (
-    <Box>
-      {theme.palette.mode === "light" ? (
-        <Box
-          id="map"
-          sx={{
-            height: "calc(100vh / 1.75)",
-            width: "calc(100vw / 1.5)",
-          }}
-        ></Box>
-      ) : (
-        <Box
-          id="map"
-          className="dark"
-          sx={{
-            height: "calc(100vh / 1.75)",
-            width: "calc(100vw / 1.5)",
-          }}
-        ></Box>
-      )}
-    </Box>
+    <>
+      <Box
+        id="map"
+        sx={{
+          height: "calc(100vh / 1.75)",
+          width: "calc(100vw / 1.5)",
+        }}
+      ></Box>
+    </>
   );
 }
