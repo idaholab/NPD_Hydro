@@ -28,7 +28,7 @@ export default function Toolbar() {
   return (
     <GridToolbarContainer>
       <Button
-        sx={{ padding: "0.75rem 1rem", color: "#8DC340" }}
+        sx={{ padding: "0.75rem 1rem", color: "#2BA8E0" }}
         {...buttonBaseProps}
         onClick={() => handleExport({ getRowsToExport: getFilteredRows })}
       >

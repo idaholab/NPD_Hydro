@@ -11,7 +11,7 @@ export const POST = async (req: Request, res: NextResponse) => {
   const body = await req.json();
 
   let dams = await axios
-    .post(`${base}/npd/inventory`, body)
+    .post(`${base}/npd/inventory`, JSON.stringify(body))
     .then((response) => {
       return response.data;
     })

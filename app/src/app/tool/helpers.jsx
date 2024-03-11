@@ -4,6 +4,9 @@ import { useEffect } from "react";
 // Store
 import { useAppSelector } from "@/lib/hooks";
 
+// Axios
+import axios from "axios";
+
 // This helper function ensures the user can't query the tool with no features considered - it's a void query
 export function validate(
   communityLayers,
@@ -24,33 +27,37 @@ export async function query(
   environmentalSelector,
   gridSelector,
   industrySelector,
+  visibleSelector,
   batterySelector,
   hydrogenSelector,
-  visibleSelector,
   weightSelector
 ) {
-  await axios
-    .post(
-      `api/npd`,
-      JSON.stringify({
-        layers: {
-          visibleLayers: visibleSelector,
-          communityLayers: communitySelector,
-          environmentalLayers: environmentalSelector,
-          gridLayers: gridSelector,
-          industryLayers: industrySelector,
-          batteryLayers: batterySelector,
-          hydrogenLayers: hydrogenSelector,
-        },
-        weights: weightSelector,
-      })
-    )
+  let response = await axios
+    .post(`api/npd`, {
+      layers: {
+        visibleLayers: visibleSelector,
+        communityLayers: communitySelector,
+        environmentalLayers: environmentalSelector,
+        gridLayers: gridSelector,
+        industryLayers: industrySelector,
+        batteryLayers: batterySelector,
+        hydrogenLayers: hydrogenSelector,
+      },
+      weights: weightSelector,
+    })
     .then((response) => {
       if (response.data.dams) {
-        return { dams: response.data.dams, render: false, submit: false };
+        return {
+          metadata: response.data,
+          dams: response.data.dams,
+          render: false,
+          submit: false,
+        };
       }
     })
     .catch((error) => {
       console.log(error);
     });
+
+  return response;
 }

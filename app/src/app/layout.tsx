@@ -6,9 +6,6 @@ import Link from "next/link";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-// Components
-import { LightSwitch } from "./themes/switch";
-
 // Store
 import StoreProvider from "./store";
 
@@ -45,26 +42,43 @@ export default function RootLayout({
           <body className={inter.className}>
             <AppBar
               sx={{
-                background: "#FFFFFF",
+                background: "#000000",
                 zIndex: 10,
-                borderBottom: `5px solid #8DC340`,
+                borderBottom: `5px solid primary`,
               }}
             >
               <Toolbar sx={{ maxHeight: "10vh" }}>
-                <Typography
-                  sx={{
-                    color: "text.primary",
-                    fontWeight: "bold",
-                    fontSize: "2rem",
-                    padding: "1rem",
-                    flexGrow: 1,
+                <Link
+                  style={{
+                    textDecoration: "none",
                   }}
+                  href="/"
                 >
-                  NPD HYDRO Tool
-                </Typography>
-                <Link style={{ textDecoration: "none" }} href="/">
                   <ListItemButton
-                    sx={{ color: "text.primary", padding: 0 }}
+                    sx={{
+                      color: "white",
+                      padding: 0,
+                    }}
+                    dense={true}
+                  >
+                    <ListItem sx={{ padding: 0 }}>
+                      <Typography
+                        sx={{
+                          color: "white",
+                          fontWeight: "bold",
+                          fontSize: "2rem",
+                          padding: "1rem",
+                        }}
+                      >
+                        NPD HYDRO Tool
+                      </Typography>
+                    </ListItem>
+                  </ListItemButton>
+                </Link>
+                <Box sx={{ flexGrow: 1 }}></Box>
+                <Link style={{ textDecoration: "none" }} href="/home">
+                  <ListItemButton
+                    sx={{ color: "white", padding: 0 }}
                     dense={true}
                   >
                     <ListItem sx={{ padding: 0 }}>
@@ -79,7 +93,7 @@ export default function RootLayout({
                 </Link>
                 <Link style={{ textDecoration: "none" }} href="/about">
                   <ListItemButton
-                    sx={{ color: "text.primary", padding: 0 }}
+                    sx={{ color: "white", padding: 0 }}
                     dense={true}
                   >
                     <ListItem sx={{ padding: 0 }}>
@@ -94,7 +108,7 @@ export default function RootLayout({
                 </Link>
                 <Link style={{ textDecoration: "none" }} href="/tool">
                   <ListItemButton
-                    sx={{ color: "text.primary", padding: 0 }}
+                    sx={{ color: "white", padding: 0 }}
                     dense={true}
                   >
                     <ListItem sx={{ padding: 0 }}>
@@ -109,7 +123,7 @@ export default function RootLayout({
                 </Link>
                 <Link style={{ textDecoration: "none" }} href="/userguide">
                   <ListItemButton
-                    sx={{ color: "text.primary", padding: 0 }}
+                    sx={{ color: "white", padding: 0 }}
                     dense={true}
                   >
                     <ListItem sx={{ padding: 0 }}>
@@ -122,10 +136,6 @@ export default function RootLayout({
                     </ListItem>
                   </ListItemButton>
                 </Link>
-                {/* Dark Mode Switch */}
-                <Box sx={{ padding: "0 0 0 1.5rem" }}>
-                  <LightSwitch />
-                </Box>
               </Toolbar>
             </AppBar>
             {children}

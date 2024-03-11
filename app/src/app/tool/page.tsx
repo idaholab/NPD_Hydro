@@ -33,8 +33,19 @@ import ReactGA from "react-ga4";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 
 function Tool() {
-  // // GA pageview
-  // // ReactGA.send({ hitType: "pageview", page: "/tool" });
+  // GA pageview
+  ReactGA.send({ hitType: "pageview", page: "/tool" });
+
+  // Responsiveness
+  let [open, setOpen] = useState(true);
+
+  function handleOpen() {
+    setOpen(true);
+  }
+
+  function handleClose() {
+    setOpen(false);
+  }
 
   // Window dimensions
   let [mobile, setMobile] = useState(false);
@@ -44,6 +55,12 @@ function Tool() {
   const environmentalSelector = useAppSelector((state) => state.environmental);
   const gridSelector = useAppSelector((state) => state.grid);
   const industrySelector = useAppSelector((state) => state.industry);
+  const batterySelector = useAppSelector((state) => state.battery);
+  const hydrogenSelector = useAppSelector((state) => state.hydrogen);
+  const visibleSelector = useAppSelector((state) => state.visible);
+
+  // Weights
+  const weightSelector = useAppSelector((state) => state.weight.weights);
 
   // Map
   const [data, setData] = useState();
@@ -55,7 +72,7 @@ function Tool() {
   const [valid, setValid] = useState(true);
 
   // Logic
-  const [submit, setSubmit] = useState(false);
+  const [submit, setSubmit] = useState(true);
 
   // Hooks
   const submitCallback = useCallback(async () => {
@@ -81,7 +98,21 @@ function Tool() {
     setValid(valid);
 
     if (valid) {
-      query();
+      let response = await query(
+        communitySelector,
+        environmentalSelector,
+        gridSelector,
+        industrySelector,
+        visibleSelector,
+        batterySelector,
+        hydrogenSelector,
+        weightSelector
+      );
+
+      setData(response!.metadata);
+      setDams(response!.dams);
+      setRender(response!.render);
+      setSubmit(response!.submit);
     }
     // eslint-disable-next-line
   }, [submit]);
@@ -104,46 +135,102 @@ function Tool() {
   return (
     <Box>
       <Grid container sx={{ width: "100%" }}>
-        <Grid item xs={2} sm={3} md={3} lg={3}>
-          <Sidebar setSubmit={setSubmit} valid={valid} />
-        </Grid>
-        <Grid item xs={10} sm={9} md={9} lg={9}>
-          <Box
-            sx={{
-              padding: "2rem 0",
-              position: "relative",
-              top: "85px",
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            {dams ? (
-              <Box>
-                <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-                  Visualization
-                </Typography>
-                <Map data={data} setPopup={setPopup} />
-                <DataTable dams={dams} popup={popup}></DataTable>
-              </Box>
-            ) : render && valid ? (
-              <Box>
-                <Skeleton
-                  variant="rectangular"
-                  width={window.innerWidth / 1.5}
-                  height={window.innerHeight / 1.75}
-                />
-                <br />
-                <Skeleton
-                  variant="rectangular"
-                  width={window.innerWidth / 1.5}
-                  height={window.innerHeight / 2.75}
-                />
-              </Box>
-            ) : null}
-          </Box>
-        </Grid>
+        {open ? (
+          <Grid item xs={2} sm={3} md={3} lg={3}>
+            <Sidebar
+              handleClose={handleClose}
+              handleOpen={handleOpen}
+              setSubmit={setSubmit}
+              valid={valid}
+            />
+          </Grid>
+        ) : (
+          <Grid item xs={1} sm={1} md={1} lg={1}>
+            <Sidebar
+              handleClose={handleClose}
+              handleOpen={handleOpen}
+              setSubmit={setSubmit}
+              valid={valid}
+            />
+          </Grid>
+        )}
+        {open ? (
+          <Grid item xs={10} sm={9} md={9} lg={9}>
+            <Box
+              sx={{
+                padding: "2rem 0",
+                position: "relative",
+                top: "10vh",
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {dams ? (
+                <Box>
+                  <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+                    Visualization
+                  </Typography>
+                  <Map data={data} setPopup={setPopup} />
+                  <DataTable dams={dams} popup={popup}></DataTable>
+                </Box>
+              ) : render && valid ? (
+                <Box>
+                  <Skeleton
+                    variant="rectangular"
+                    width={window.innerWidth / 1.5}
+                    height={window.innerHeight / 1.75}
+                  />
+                  <br />
+                  <Skeleton
+                    variant="rectangular"
+                    width={window.innerWidth / 1.5}
+                    height={window.innerHeight / 2.75}
+                  />
+                </Box>
+              ) : null}
+            </Box>
+          </Grid>
+        ) : (
+          <Grid item xs={11} sm={11} md={11} lg={11}>
+            <Box
+              sx={{
+                padding: "2rem 0",
+                position: "relative",
+                top: "10vh",
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {dams ? (
+                <Box>
+                  <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+                    Visualization
+                  </Typography>
+                  <Map data={data} setPopup={setPopup} />
+                  <DataTable dams={dams} popup={popup}></DataTable>
+                </Box>
+              ) : render && valid ? (
+                <Box>
+                  <Skeleton
+                    variant="rectangular"
+                    width={window.innerWidth / 1.5}
+                    height={window.innerHeight / 1.75}
+                  />
+                  <br />
+                  <Skeleton
+                    variant="rectangular"
+                    width={window.innerWidth / 1.5}
+                    height={window.innerHeight / 2.75}
+                  />
+                </Box>
+              ) : null}
+            </Box>
+          </Grid>
+        )}
       </Grid>
     </Box>
   );

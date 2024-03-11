@@ -1,3 +1,12 @@
+# Videos
+/app/public/*.mov filter=lfs diff=lfs merge=lfs
+
+# sql
+gdb/data/pg_dump.sql filter=lfs diff=lfs merge=lfs -text
+# NPD Database
+app/public/data/NPD_Database.gdb.zip filter=lfs diff=lfs merge=lfs -text
+# .sh line endings should be LF
+*.sh text eol=lf
 *.json filter=lfs diff=lfs merge=lfs -text
 *.mov filter=lfs diff=lfs merge=lfs -text
 *.sql filter=lfs diff=lfs merge=lfs -text

@@ -1,88 +1,106 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+// Hooks
+import { useState, useEffect, useRef } from "react";
 
 // Material
-import { Box, Divider, Grid, Typography } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardContent,
+  CardMedia,
+  Divider,
+  Grid,
+  ListItem,
+  ListItemButton,
+  Typography,
+} from "@mui/material";
 
-// Components
-import Footer from "./components/footer";
-import Questionnaire from "./home/questionnaire/questionnaire";
+// Next
+import Link from "next/link";
 
 function Home() {
-  // Window dimensions
-  let [mobile, setMobile] = useState(false);
+  const vidRef = useRef();
 
   useEffect(() => {
-    function handleResize() {
-      window.innerWidth < 768 ? setMobile(true) : setMobile(false); // Mobile Devices can't use the tool
-    }
-
-    handleResize();
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [mobile]);
+    vidRef.current.play();
+  }, []);
 
   return (
-    <Grid container sx={{ padding: "15vh 1rem 0 1rem" }}>
-      <Grid item>
-        <Grid container sx={{ padding: "1rem" }}>
-          <Grid item xs>
-            <Typography variant="h4" component="h1">
-              Welcome to the NPD HYDRO Tool
+    <Grid container>
+      <Grid item sx={{ height: "100vh", width: "100vw" }}>
+        <Card sx={{ height: "100%" }}>
+          <video src="/idahofalls.mov" ref={vidRef} muted autoPlay loop />
+          <CardContent
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              textAlign: "center",
+            }}
+          >
+            <Typography
+              variant="h1"
+              component="h1"
+              sx={{
+                fontWeight: "bold",
+                color: "white",
+                opacity: "70%",
+                textShadow:
+                  "2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000",
+              }}
+            >
+              NPD HYDRO
+              <Divider sx={{ borderBottomColor: "white" }} />
             </Typography>
-            <Divider />
             <br />
-            <Typography variant="body" component="div">
-              The{" "}
-              <b>
-                Non-Powered Dam Hydropower Development and Ranking Opportunity
-                Tool
-              </b>{" "}
-              is developed to analyze the feasibility of retrofitting existing
-              non-powered dams (NPDs) with generation and energy storage
-              technologies. The tool provides development feasibility ratings
-              based on adding generation paired with energy storage (batteries,
-              hydrogen, pumped storage hydro) to existing NPDs.
-              <br />
-              <br />
-              This web-based interactive tool lets the user choose from a wide
-              range of features to define each of the benefits through a
-              user-friendly graphical user interface. These features are related
-              to dam operation, hydropower opportunity, power market economy,
-              social vulnerability and risk, proximity to critical
-              infrastructure and energy generating facilities, environmental
-              concerns (air, water, and critical habitat), and natural hazard
-              potential. The overall priority score of NPDs is calculated based
-              on user-defined weights for each of the benefits.
-              <br />
-              <br />
-              {!mobile ? (
-                <Box>
-                  Start by filling out a brief questionnaire designed to guide
-                  benefits selection.
-                </Box>
-              ) : (
-                <Box>
-                  <b>
-                    This application is not available on mobile devices. You
-                    need a desktop to explore this tool and NPD data.
-                  </b>
-                </Box>
-              )}
-            </Typography>
-          </Grid>
-          {!mobile ? (
-            <Grid item md={4} xs={4}>
-              <Questionnaire />
-            </Grid>
-          ) : null}
-        </Grid>
-      </Grid>
-      <br />
-      <Grid item>
-        <Footer />
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <Link
+                style={{
+                  textDecoration: "none",
+                  backgroundColor: "black",
+                }}
+                href="/home"
+              >
+                <ListItemButton
+                  sx={{
+                    color: "white",
+                    padding: 0,
+                    background: "black",
+                    opacity: "70%",
+                  }}
+                  dense={true}
+                >
+                  <ListItem sx={{ padding: 0 }}>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        width: "200px",
+                      }}
+                    >
+                      <Typography
+                        sx={{
+                          padding: "0.5rem",
+                        }}
+                        variant="h6"
+                      >
+                        Start
+                      </Typography>
+                    </Box>
+                  </ListItem>
+                </ListItemButton>
+              </Link>
+            </Box>
+          </CardContent>
+        </Card>
       </Grid>
     </Grid>
   );

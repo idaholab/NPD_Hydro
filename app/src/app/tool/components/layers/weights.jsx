@@ -148,6 +148,10 @@ function Weights() {
           <br />
           <br />
           <Slider
+            classes={{
+              thumb: "bg-electricity",
+              track: "bg-electricity",
+            }}
             defaultValue={0.5}
             value={weightSelector.community}
             step={0.25}
@@ -179,6 +183,11 @@ function Weights() {
             }}
           >
             <Checkbox
+              sx={{
+                "& .MuiSvgIcon-root": {
+                  fill: "#2BA8E0",
+                },
+              }}
               defaultChecked={true}
               onChange={(event) => {
                 communitySelectAll(event);
@@ -192,6 +201,11 @@ function Weights() {
                 <Box key={index + 1} sx={{ padding: "0.5rem 0" }}>
                   <Stack direction={"row"}>
                     <Checkbox
+                      sx={{
+                        "& .MuiSvgIcon-root": {
+                          fill: "#2BA8E0",
+                        },
+                      }}
                       key={index + 1}
                       checked={communitySelector[layer.name]}
                       value={communitySelector[layer.name]}
@@ -248,6 +262,10 @@ function Weights() {
           <br />
           <br />
           <Slider
+            classes={{
+              thumb: "bg-electricity",
+              track: "bg-electricity",
+            }}
             defaultValue={0.5}
             value={weightSelector.environmental}
             step={0.25}
@@ -279,6 +297,11 @@ function Weights() {
             }}
           >
             <Checkbox
+              sx={{
+                "& .MuiSvgIcon-root": {
+                  fill: "#2BA8E0",
+                },
+              }}
               defaultChecked={true}
               onChange={(event) => {
                 environmentalSelectAll(event);
@@ -292,6 +315,11 @@ function Weights() {
                 <Box key={index + 1} sx={{ padding: "0.5rem 0" }}>
                   <Stack direction={"row"}>
                     <Checkbox
+                      sx={{
+                        "& .MuiSvgIcon-root": {
+                          fill: "#2BA8E0",
+                        },
+                      }}
                       key={index + 1}
                       checked={environmentalSelector[layer.name]}
                       value={environmentalSelector[layer.name]}
@@ -347,6 +375,10 @@ function Weights() {
           <br />
           <br />
           <Slider
+            classes={{
+              thumb: "bg-electricity",
+              track: "bg-electricity",
+            }}
             defaultValue={0.5}
             value={weightSelector.grid}
             step={0.25}
@@ -378,6 +410,11 @@ function Weights() {
             }}
           >
             <Checkbox
+              sx={{
+                "& .MuiSvgIcon-root": {
+                  fill: "#2BA8E0",
+                },
+              }}
               defaultChecked={true}
               onChange={(event) => {
                 gridSelectAll(event);
@@ -391,6 +428,11 @@ function Weights() {
                 <Box key={index + 1} sx={{ padding: "0.5rem 0" }}>
                   <Stack direction={"row"}>
                     <Checkbox
+                      sx={{
+                        "& .MuiSvgIcon-root": {
+                          fill: "#2BA8E0",
+                        },
+                      }}
                       key={index + 1}
                       checked={gridSelector[layer.name]}
                       value={gridSelector[layer.name]}
@@ -446,6 +488,10 @@ function Weights() {
           <br />
           <br />
           <Slider
+            classes={{
+              thumb: "bg-electricity",
+              track: "bg-electricity",
+            }}
             defaultValue={0.5}
             value={weightSelector.industry}
             step={0.25}
@@ -477,6 +523,11 @@ function Weights() {
             }}
           >
             <Checkbox
+              sx={{
+                "& .MuiSvgIcon-root": {
+                  fill: "#2BA8E0",
+                },
+              }}
               defaultChecked={true}
               onChange={(event) => {
                 industrySelectAll(event);
@@ -490,6 +541,11 @@ function Weights() {
                 <Box key={index + 1} sx={{ padding: "0.5rem 0" }}>
                   <Stack direction={"row"}>
                     <Checkbox
+                      sx={{
+                        "& .MuiSvgIcon-root": {
+                          fill: "#2BA8E0",
+                        },
+                      }}
                       key={index + 1}
                       checked={industrySelector[layer.name]}
                       value={industrySelector[layer.name]}
@@ -559,6 +615,11 @@ function Weights() {
                 <Box key={index + 1} sx={{ padding: "0.5rem 0" }}>
                   <Stack direction={"row"}>
                     <Checkbox
+                      sx={{
+                        "& .MuiSvgIcon-root": {
+                          fill: "#2BA8E0",
+                        },
+                      }}
                       key={index + 1}
                       checked={batterySelector[layer.name]}
                       value={batterySelector[layer.name]}
@@ -613,6 +674,11 @@ function Weights() {
                 <Box key={index + 1} sx={{ padding: "0.5rem 0" }}>
                   <Stack direction={"row"}>
                     <Checkbox
+                      sx={{
+                        "& .MuiSvgIcon-root": {
+                          fill: "#2BA8E0",
+                        },
+                      }}
                       key={index + 1}
                       checked={hydrogenSelector[layer.name]}
                       value={hydrogenSelector[layer.name]}
@@ -659,6 +725,11 @@ function Weights() {
                 <Box key={index + 1} sx={{ padding: "0.5rem 0" }}>
                   <Stack direction={"row"}>
                     <Checkbox
+                      sx={{
+                        "& .MuiSvgIcon-root": {
+                          fill: "#2BA8E0",
+                        },
+                      }}
                       key={index + 1}
                       checked={pshSelector[layer.name]}
                       value={pshSelector[layer.name]}
