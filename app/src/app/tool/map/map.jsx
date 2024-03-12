@@ -36,7 +36,7 @@ import {
   GeoEnergyCommunitiesFactory,
   GeoDisadvCommunitiesFactory,
   GeoMetropolitanFactory,
-} from "./helpers";
+} from "./helpers.jsx";
 
 // ArcGIS
 import Map from "@arcgis/core/Map";
@@ -46,6 +46,9 @@ import Legend from "@arcgis/core/widgets/Legend";
 
 // Axios
 import axios from "axios";
+
+// Cache
+import energy_intesive_facilities from "./cache/manufacturing_facilities.json" assert { type: "json" };
 
 export default function ArcGIS(props) {
   // GeoLayers
@@ -110,9 +113,7 @@ export default function ArcGIS(props) {
             );
           }
           if (props.data.manufacturing_facilities) {
-            geoLayers.push(
-              GeoManufacturingFactory(props.data.manufacturing_facilities)
-            );
+            geoLayers.push(GeoManufacturingFactory(energy_intesive_facilities));
           }
           if (props.data.powerplants) {
             geoLayers.push(GeoFossilFuelFactory(props.data.powerplants));

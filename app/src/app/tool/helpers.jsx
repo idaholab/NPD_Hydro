@@ -1,8 +1,5 @@
-// Hooks
-import { useEffect } from "react";
-
-// Store
-import { useAppSelector } from "@/lib/hooks";
+// File Saver
+import { saveAs } from "file-saver";
 
 // Axios
 import axios from "axios";
@@ -33,19 +30,27 @@ export async function query(
   weightSelector
 ) {
   let response = await axios
-    .post(`api/npd`, {
-      layers: {
-        visibleLayers: visibleSelector,
-        communityLayers: communitySelector,
-        environmentalLayers: environmentalSelector,
-        gridLayers: gridSelector,
-        industryLayers: industrySelector,
-        batteryLayers: batterySelector,
-        hydrogenLayers: hydrogenSelector,
-      },
-      weights: weightSelector,
-    })
+    .post(
+      `api/npd`,
+      {
+        layers: {
+          visibleLayers: visibleSelector,
+          communityLayers: communitySelector,
+          environmentalLayers: environmentalSelector,
+          gridLayers: gridSelector,
+          industryLayers: industrySelector,
+          batteryLayers: batterySelector,
+          hydrogenLayers: hydrogenSelector,
+        },
+        weights: weightSelector,
+      }
+      // {
+      //   responseType: "blob",
+      // }
+    )
     .then((response) => {
+      console.log(response.data);
+      // saveAs(response.data, "manufacturing_facilities.json");
       if (response.data.dams) {
         return {
           metadata: response.data,

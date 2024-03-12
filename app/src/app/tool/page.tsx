@@ -172,7 +172,7 @@ function Tool() {
                   <Typography variant="h5" sx={{ fontWeight: "bold" }}>
                     Visualization
                   </Typography>
-                  <Map data={data} setPopup={setPopup} />
+                  <Map data={data} open={open} setPopup={setPopup} />
                   <DataTable dams={dams} popup={popup}></DataTable>
                 </Box>
               ) : render && valid ? (
