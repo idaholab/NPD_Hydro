@@ -30,27 +30,20 @@ export async function query(
   weightSelector
 ) {
   let response = await axios
-    .post(
-      `api/npd`,
-      {
-        layers: {
-          visibleLayers: visibleSelector,
-          communityLayers: communitySelector,
-          environmentalLayers: environmentalSelector,
-          gridLayers: gridSelector,
-          industryLayers: industrySelector,
-          batteryLayers: batterySelector,
-          hydrogenLayers: hydrogenSelector,
-        },
-        weights: weightSelector,
-      }
-      // {
-      //   responseType: "blob",
-      // }
-    )
+    .post(`api/npd`, {
+      layers: {
+        visibleLayers: visibleSelector,
+        communityLayers: communitySelector,
+        environmentalLayers: environmentalSelector,
+        gridLayers: gridSelector,
+        industryLayers: industrySelector,
+        batteryLayers: batterySelector,
+        hydrogenLayers: hydrogenSelector,
+      },
+      weights: weightSelector,
+    })
     .then((response) => {
       console.log(response.data);
-      // saveAs(response.data, "manufacturing_facilities.json");
       if (response.data.dams) {
         return {
           metadata: response.data,

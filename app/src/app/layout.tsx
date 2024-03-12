@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 // Styles
-import { Inter } from "next/font/google";
 import "./globals.css";
 
 // Store
@@ -22,8 +21,6 @@ import {
   Typography,
 } from "@mui/material";
 
-const inter = Inter({ subsets: ["latin"] });
-
 export const metadata: Metadata = {
   title: "NPD HYDRO",
   description:
@@ -39,7 +36,7 @@ export default function RootLayout({
     <Theme>
       <html lang="en" className="text-black">
         <StoreProvider>
-          <body className={inter.className}>
+          <body>
             <AppBar
               sx={{
                 background: "#000000",

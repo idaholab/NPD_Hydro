@@ -28,11 +28,6 @@ import {
   GeoNaturalGasFactory,
   GeoPublicSchoolFactory,
   GeoSocialVulnerabilityFactory,
-  GeoWindspeedFactory,
-  GeoHorizontalIrradianceFactory,
-  GeoSurfaceOwnershipFactory,
-  GeoWholesaleMarketsFactory,
-  GeoElectricityTerritoriesFactory,
   GeoEnergyCommunitiesFactory,
   GeoDisadvCommunitiesFactory,
   GeoMetropolitanFactory,
@@ -46,9 +41,6 @@ import Legend from "@arcgis/core/widgets/Legend";
 
 // Axios
 import axios from "axios";
-
-// Cache
-import energy_intesive_facilities from "./cache/manufacturing_facilities.json" assert { type: "json" };
 
 export default function ArcGIS(props) {
   // GeoLayers
@@ -112,42 +104,21 @@ export default function ArcGIS(props) {
               GeoNaturalGasFactory(props.data.compressor_stations)
             );
           }
-          if (props.data.manufacturing_facilities) {
-            geoLayers.push(GeoManufacturingFactory(energy_intesive_facilities));
+          if (props.data.energy_intensive_facilities) {
+            geoLayers.push(
+              GeoManufacturingFactory(props.data.energy_intensive_facilities)
+            );
           }
-          if (props.data.powerplants) {
-            geoLayers.push(GeoFossilFuelFactory(props.data.powerplants));
+          if (props.data.fossil_fuel_powerplants) {
+            geoLayers.push(
+              GeoFossilFuelFactory(props.data.fossil_fuel_powerplants)
+            );
           }
-          if (props.data.schools) {
-            geoLayers.push(GeoPublicSchoolFactory(props.data.schools));
+          if (props.data.public_schools) {
+            geoLayers.push(GeoPublicSchoolFactory(props.data.public_schools));
           }
           if (props.data.hospitals) {
             geoLayers.push(GeoHospitalFactory(props.data.hospitals));
-          }
-          if (props.data.windspeed) {
-            geoLayers.push(GeoWindspeedFactory(props.data.windspeed));
-          }
-          if (props.data.irradiance) {
-            geoLayers.push(
-              GeoHorizontalIrradianceFactory(props.data.irradiance)
-            );
-          }
-          if (props.data.surface_ownership) {
-            geoLayers.push(
-              GeoSurfaceOwnershipFactory(props.data.surface_ownership)
-            );
-          }
-          if (props.data.wholesale_markets) {
-            geoLayers.push(
-              GeoWholesaleMarketsFactory(props.data.wholesale_markets)
-            );
-          }
-          if (props.data.electricity_territories) {
-            geoLayers.push(
-              GeoElectricityTerritoriesFactory(
-                props.data.electricity_territories
-              )
-            );
           }
           if (props.data.energy_communities && props.data.msa) {
             geoLayers.push(GeoMetropolitanFactory(props.data.msa));
