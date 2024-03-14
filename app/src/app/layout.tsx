@@ -24,7 +24,7 @@ import {
 export const metadata: Metadata = {
   title: "NPD HYDRO",
   description:
-    "A non-powered dam assessment tool, developed by the Idaho National Laboratory and Pacific Northwest Laboratory",
+    "The NPD HYDRO Tool is developed to analyze the feasibility of retrofitting existing non-powered dams (NPDs) with generation and energy storage technologies.",
 };
 
 export default function RootLayout({
@@ -41,10 +41,9 @@ export default function RootLayout({
               sx={{
                 background: "#000000",
                 zIndex: 10,
-                borderBottom: `5px solid primary`,
               }}
             >
-              <Toolbar sx={{ maxHeight: "10vh" }}>
+              <Toolbar sx={{ height: "10vh" }}>
                 <Link
                   style={{
                     textDecoration: "none",
@@ -63,11 +62,11 @@ export default function RootLayout({
                         sx={{
                           color: "white",
                           fontWeight: "bold",
-                          fontSize: "2rem",
+                          fontSize: "1rem",
                           padding: "1rem",
                         }}
                       >
-                        NPD HYDRO Tool
+                        NPD HYDRO
                       </Typography>
                     </ListItem>
                   </ListItemButton>
@@ -135,7 +134,8 @@ export default function RootLayout({
                 </Link>
               </Toolbar>
             </AppBar>
-            {children}
+            {/* Offset child components by 15vh to account for the AppBar */}
+            <Box sx={{ position: "absolute", top: "15vh" }}>{children}</Box>
           </body>
         </StoreProvider>
       </html>

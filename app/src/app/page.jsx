@@ -1,14 +1,13 @@
 "use client";
 
 // Hooks
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 // Material
 import {
   Box,
   Card,
   CardContent,
-  CardMedia,
   Divider,
   Grid,
   ListItem,
@@ -28,8 +27,8 @@ function Home() {
 
   return (
     <Grid container>
-      <Grid item sx={{ height: "100vh", width: "100vw" }}>
-        <Card sx={{ height: "100%" }}>
+      <Grid item>
+        <Card sx={{ height: "100vh", width: "100vw" }}>
           <video src="/idahofalls.mov" ref={vidRef} muted autoPlay loop />
           <CardContent
             style={{

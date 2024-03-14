@@ -19,6 +19,7 @@ import {
   Button,
   Container,
   Divider,
+  Grid,
   Typography,
 } from "@mui/material";
 
@@ -73,23 +74,26 @@ function UserGuide() {
   }
 
   return (
-    <Container
+    <Grid
+      container
+      direction={"column"}
+      spacing={3}
       sx={{
-        position: "absolute",
-        top: "15vh",
+        padding: "1rem",
         width: "100vw",
         display: "flex",
         alignItems: "center",
+        justifyContent: "center",
       }}
     >
-      <Box>
-        <Box>
+      <Grid item xs={12}>
+        <Box sx={{ width: "75vw" }}>
           <Typography variant="h4" component="h2">
             User Guide
           </Typography>
           <Divider />
           <br />
-          <Typography variant="subtitle" component="h3">
+          <Typography variant="h6" component="h3">
             Download the User Guide
           </Typography>
           <br />
@@ -111,14 +115,16 @@ function UserGuide() {
               Please wait while your file downloads.
             </Alert>
           ) : null}
-          <br />
-          <br />
+        </Box>
+      </Grid>
+      <Grid item xs={12}>
+        <Box sx={{ width: "75vw" }}>
           <Typography variant="h4" component="h2">
             Non-Powered Dam Data
           </Typography>
           <Divider />
           <br />
-          <Typography variant="subtitle" component="h3">
+          <Typography variant="h6" component="h3">
             Download NPD Data
           </Typography>
           <br />
@@ -141,12 +147,8 @@ function UserGuide() {
             </Alert>
           ) : null}
         </Box>
-        <br />
-        <br />
-        <br />
-        <Footer />
-      </Box>
-    </Container>
+      </Grid>
+    </Grid>
   );
 }
 

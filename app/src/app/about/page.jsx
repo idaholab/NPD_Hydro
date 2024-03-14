@@ -2,7 +2,7 @@
 import React from "react";
 
 // Material
-import { Container, Typography, Box, Divider } from "@mui/material";
+import { Box, Divider, Container, Grid, Typography } from "@mui/material";
 
 // Google Analytics
 import ReactGA from "react-ga4";
@@ -15,22 +15,23 @@ function About() {
   ReactGA.send({ hitType: "pageview", page: "/about" });
 
   return (
-    <Container
+    <Grid
+      container
       sx={{
-        position: "absolute",
-        top: "15vh",
-        width: "100%",
-        justifyContent: "center",
+        padding: "1rem",
+        width: "100vw",
+        display: "flex",
         alignItems: "center",
+        justifyContent: "center",
       }}
     >
-      <Box>
+      <Box sx={{ width: "75vw" }}>
         <Typography variant="h4" component="h2">
           About
         </Typography>
         <Divider />
         <br />
-        <Typography variant="subtitle" component="h3">
+        <Typography variant="h6" component="h3">
           Overview
         </Typography>
         <br />
@@ -57,7 +58,7 @@ function About() {
           at each of the potential sites.
         </Typography>
         <br />
-        <Typography variant="subtitle" component="h3">
+        <Typography variant="h6" component="h3">
           Why the NPD Hydro Tool?
         </Typography>
         <br />
@@ -81,11 +82,7 @@ function About() {
         industry, and environmental benefits.
         <br />
       </Box>
-      <br />
-      <br />
-      <br />
-      <Footer />
-    </Container>
+    </Grid>
   );
 }
 
