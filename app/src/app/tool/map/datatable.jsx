@@ -155,7 +155,8 @@ function DataTable(props) {
     <Box sx={{ padding: "1rem 0" }}>
       <DataGrid
         sx={{
-          width: "calc(100vw / 1.5)",
+          width: "calc(100vw / 1.25)",
+          maxWidth: "75vw",
           backgroundColor: "#FFFFFF",
         }}
         columns={columns}

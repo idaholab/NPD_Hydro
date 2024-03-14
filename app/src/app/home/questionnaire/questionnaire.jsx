@@ -33,7 +33,7 @@ import { steps, benefits, userGroups } from "./form";
 import { states } from "./states";
 
 // Store
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { useAppDispatch } from "@/lib/hooks";
 import { weightActions } from "@/lib/features/weight";
 
 // Router
@@ -224,7 +224,9 @@ function Questionnaire() {
 
   return (
     <Container sx={{ fontSize: "14px" }}>
-      <Paper sx={{ padding: "0 1rem", height: "fit-content" }}>
+      <Paper
+        sx={{ padding: "0 1rem", height: "fit-content", minWidth: "375px" }}
+      >
         <Container sx={{ padding: "1rem" }}>
           <Typography variant="h5">Getting Started</Typography>
           <Typography variant="body">

@@ -10,7 +10,10 @@ import { useState, useEffect } from "react";
 import { validate, query } from "./helpers";
 
 // Material
-import { Alert, Box, Drawer, Grid, Skeleton, Typography } from "@mui/material";
+import { Box, Button, Grid, Skeleton, Typography } from "@mui/material";
+
+// Icons
+import ChevronRight from "@mui/icons-material/ChevronRight";
 
 // Next
 import dynamic from "next/dynamic";
@@ -30,7 +33,7 @@ import axios from "axios";
 import ReactGA from "react-ga4";
 
 // Store
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { useAppSelector } from "@/lib/hooks";
 
 function Tool() {
   // GA pageview
@@ -133,106 +136,51 @@ function Tool() {
   }, []);
 
   return (
-    <Box>
-      <Grid container sx={{ width: "100%" }}>
+    <Grid container direction={"row"}>
+      <Grid item xs={3} md={3} lg={3}>
         {open ? (
-          <Grid item xs={2} sm={3} md={3} lg={3}>
-            <Sidebar
-              handleClose={handleClose}
-              handleOpen={handleOpen}
-              setSubmit={setSubmit}
-              valid={valid}
-            />
-          </Grid>
+          <Sidebar
+            handleClose={handleClose}
+            handleOpen={handleOpen}
+            setSubmit={setSubmit}
+            valid={valid}
+          />
         ) : (
-          <Grid item xs={1} sm={1} md={1} lg={1}>
-            <Sidebar
-              handleClose={handleClose}
-              handleOpen={handleOpen}
-              setSubmit={setSubmit}
-              valid={valid}
-            />
-          </Grid>
-        )}
-        {open ? (
-          <Grid item xs={10} sm={9} md={9} lg={9}>
-            <Box
-              sx={{
-                padding: "2rem 0",
-                position: "relative",
-                top: "10vh",
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <Button
+              className="bg-electricity hover:bg-cherenkov text-white rounded"
+              onClick={handleOpen}
+              sx={{ width: "65%" }}
+              endIcon={<ChevronRight />}
             >
-              {dams ? (
-                <Box>
-                  <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-                    Visualization
-                  </Typography>
-                  <Map data={data} open={open} setPopup={setPopup} />
-                  <DataTable dams={dams} popup={popup}></DataTable>
-                </Box>
-              ) : render && valid ? (
-                <Box>
-                  <Skeleton
-                    variant="rectangular"
-                    width={window.innerWidth / 1.5}
-                    height={window.innerHeight / 1.75}
-                  />
-                  <br />
-                  <Skeleton
-                    variant="rectangular"
-                    width={window.innerWidth / 1.5}
-                    height={window.innerHeight / 2.75}
-                  />
-                </Box>
-              ) : null}
-            </Box>
-          </Grid>
-        ) : (
-          <Grid item xs={11} sm={11} md={11} lg={11}>
-            <Box
-              sx={{
-                padding: "2rem 0",
-                position: "relative",
-                top: "10vh",
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              {dams ? (
-                <Box>
-                  <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-                    Visualization
-                  </Typography>
-                  <Map data={data} setPopup={setPopup} />
-                  <DataTable dams={dams} popup={popup}></DataTable>
-                </Box>
-              ) : render && valid ? (
-                <Box>
-                  <Skeleton
-                    variant="rectangular"
-                    width={window.innerWidth / 1.5}
-                    height={window.innerHeight / 1.75}
-                  />
-                  <br />
-                  <Skeleton
-                    variant="rectangular"
-                    width={window.innerWidth / 1.5}
-                    height={window.innerHeight / 2.75}
-                  />
-                </Box>
-              ) : null}
-            </Box>
-          </Grid>
+              Open
+            </Button>
+          </Box>
         )}
       </Grid>
-    </Box>
+      <Grid item xs={9} md={6} lg={9}>
+        {dams ? (
+          <>
+            <Map data={data} open={open} setPopup={setPopup} />
+            <DataTable dams={dams} popup={popup}></DataTable>
+          </>
+        ) : render && valid ? (
+          <>
+            <Skeleton
+              variant="rectangular"
+              width={window.innerWidth / 1.5}
+              height={window.innerHeight / 1.75}
+            />
+            <br />
+            <Skeleton
+              variant="rectangular"
+              width={window.innerWidth / 1.5}
+              height={window.innerHeight / 2.75}
+            />
+          </>
+        ) : null}
+      </Grid>
+    </Grid>
   );
 }
 

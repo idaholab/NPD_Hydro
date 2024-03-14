@@ -184,7 +184,9 @@ export default function ArcGIS(props) {
         id="map"
         sx={{
           height: "calc(100vh / 1.75)",
-          width: "calc(100vw / 1.5)",
+          maxHeight: "75vh",
+          width: "calc(100vw / 1.25)",
+          maxWidth: "75vw",
         }}
       ></Box>
     </>

@@ -26,9 +26,9 @@ function Home() {
   }, []);
 
   return (
-    <Grid container>
-      <Grid item>
-        <Card sx={{ height: "100vh", width: "100vw" }}>
+    <Grid container sx={{ position: "relative", top: "-15vh" }}>
+      <Grid item sx={{ height: "85vh" }}>
+        <Card sx={{ height: "100vh" }}>
           <video src="/idahofalls.mov" ref={vidRef} muted autoPlay loop />
           <CardContent
             style={{
@@ -72,7 +72,6 @@ function Home() {
                     color: "white",
                     padding: 0,
                     background: "black",
-                    opacity: "70%",
                   }}
                   dense={true}
                 >

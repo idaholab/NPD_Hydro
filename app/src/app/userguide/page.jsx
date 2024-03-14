@@ -79,8 +79,7 @@ function UserGuide() {
       direction={"column"}
       spacing={3}
       sx={{
-        padding: "1rem",
-        width: "100vw",
+        width: "90vw",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
