@@ -28,11 +28,11 @@ export default function Toolbar() {
   return (
     <GridToolbarContainer>
       <Button
-        sx={{ padding: "0.75rem 1rem", color: "#2BA8E0" }}
+        sx={{ padding: "0.75rem 1rem", color: "black" }}
         {...buttonBaseProps}
         onClick={() => handleExport({ getRowsToExport: getFilteredRows })}
       >
-        Export NPD Results
+        Export Table
       </Button>
     </GridToolbarContainer>
   );

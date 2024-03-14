@@ -40,6 +40,7 @@ function Sidebar(props) {
     <>
       <Drawer
         open={open}
+        onClose={handleClose}
         sx={{
           zIndex: 2,
           flexShrink: 0,
@@ -68,19 +69,12 @@ function Sidebar(props) {
                 }}
               >
                 <Button
+                  sx={{ width: "100%" }}
                   className="bg-electricity hover:bg-cherenkov text-white font-bold rounded"
                   onClick={() => handleSubmit()}
                   startIcon={<CalculateIcon />}
                 >
                   CALCULATE NPD SCORES
-                </Button>
-                <Box sx={{ flexGrow: 1 }}></Box>
-                <Button
-                  className="bg-electricity hover:bg-cherenkov text-white font-bold rounded"
-                  onClick={handleClose}
-                  startIcon={<ChevronLeft />}
-                >
-                  Close
                 </Button>
               </Box>
               {!props.valid ? (
@@ -92,6 +86,21 @@ function Sidebar(props) {
                 </Box>
               ) : null}
               <Divider />
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "end",
+                  padding: "0.5rem 0",
+                }}
+              >
+                <Button
+                  className="bg-electricity hover:bg-cherenkov text-white font-bold rounded"
+                  onClick={handleClose}
+                  startIcon={<ChevronLeft />}
+                >
+                  Close
+                </Button>
+              </Box>
               <br />
               <Typography variant="h5">Start Exploring NPDs</Typography>
               <br />
