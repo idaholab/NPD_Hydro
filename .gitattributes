@@ -5,6 +5,6 @@
 # gdb
 *.sql filter=lfs diff=lfs merge=lfs -text
 # "cache"
-server/nlpr/cache/*json filter=lfs diff=lfs merge=lfs -text
+server/nlpr/cache/** filter=lfs diff=lfs merge=lfs -text
 *.json filter=lfs diff=lfs merge=lfs -text
 *.mov filter=lfs diff=lfs merge=lfs -text
