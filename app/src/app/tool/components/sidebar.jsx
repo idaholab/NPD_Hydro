@@ -64,7 +64,7 @@ function Sidebar(props) {
       >
         <Box m={2}>
           <Box>
-            <Typography variant="h5">Let's start exploring NPDs</Typography>
+            <Typography variant="h5">{`Let's`} start exploring NPDs</Typography>
             <Typography variant="caption">
               <List>
                 <ListItem>1. Adjust Scoring Layers and Weights</ListItem>

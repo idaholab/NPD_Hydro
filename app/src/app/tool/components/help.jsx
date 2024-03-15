@@ -29,8 +29,8 @@ function Help(props) {
           <Divider />
           <Typography variant={"body2"} component={"p"}>
             The map contains all non-powered dams in the NPD HYDRO database, as
-            well as any visual layers you've selected using the scoring utility
-            at the left of this page.
+            well as any visual layers {`you've`} selected using the scoring
+            utility at the left of this page.
             <br />
             <br />
             If you want to make adjustments, you can click the{" "}
