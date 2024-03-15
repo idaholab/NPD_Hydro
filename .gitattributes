@@ -1,21 +1,9 @@
 # Videos
-.mov filter=lfs diff=lfs merge=lfs -text
+*.mov filter=lfs diff=lfs merge=lfs -text
 # .sh line endings should be LF
 *.sh text eol=lf
 # gdb
 *.sql filter=lfs diff=lfs merge=lfs -text
 # "cache"
-server/nlpr/cache/air_quality.json filter=lfs diff=lfs merge=lfs -text
-server/nlpr/cache/compressor_stations.json filter=lfs diff=lfs merge=lfs -text
-server/nlpr/cache/disadvantaged_communities.json filter=lfs diff=lfs merge=lfs -text
-server/nlpr/cache/electricity_prices.json filter=lfs diff=lfs merge=lfs -text
-server/nlpr/cache/energy_communities.json filter=lfs diff=lfs merge=lfs -text
-server/nlpr/cache/energy_intensive_facilities.json filter=lfs diff=lfs merge=lfs -text
-server/nlpr/cache/fossil_fuel_powerplants.json filter=lfs diff=lfs merge=lfs -text
-server/nlpr/cache/hazards.json filter=lfs diff=lfs merge=lfs -text
-server/nlpr/cache/hospitals.json filter=lfs diff=lfs merge=lfs -text
-server/nlpr/cache/msa.json filter=lfs diff=lfs merge=lfs -text
-server/nlpr/cache/public_schools.json filter=lfs diff=lfs merge=lfs -text
-server/nlpr/cache/social_vulnerability.json filter=lfs diff=lfs merge=lfs -text
 *.json filter=lfs diff=lfs merge=lfs -text
-*.mov filter=lfs diff=lfs merge=lfs -text
+
