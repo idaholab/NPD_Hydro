@@ -79,6 +79,8 @@ function UserGuide() {
       direction={"column"}
       spacing={3}
       sx={{
+        position: "relative",
+        top: "15vh",
         width: "90vw",
         display: "flex",
         alignItems: "center",
@@ -146,6 +148,8 @@ function UserGuide() {
             </Alert>
           ) : null}
         </Box>
+        <br />
+        <Footer font={"black"} />
       </Grid>
     </Grid>
   );

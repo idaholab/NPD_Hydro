@@ -10,7 +10,16 @@ import Layers from "./layers/layers";
 import Weights from "./layers/weights";
 
 // Material
-import { Alert, Box, Button, Divider, Drawer, Typography } from "@mui/material";
+import {
+  Alert,
+  Box,
+  Button,
+  Divider,
+  Drawer,
+  List,
+  ListItem,
+  Typography,
+} from "@mui/material";
 
 // Icons
 import CalculateIcon from "@mui/icons-material/Calculate";
@@ -55,12 +64,24 @@ function Sidebar(props) {
       >
         <Box m={2}>
           <Box>
+            <Typography variant="h5">Let's start exploring NPDs</Typography>
+            <Typography variant="caption">
+              <List>
+                <ListItem>1. Adjust Scoring Layers and Weights</ListItem>
+                <ListItem>
+                  2. Consider Energy Storage Technology & Feasibility
+                </ListItem>
+                <ListItem>
+                  3. Add optional Visual Layers to add context
+                </ListItem>
+                <ListItem>
+                  4. Click the button below to query the NPD database and start
+                  exploring
+                </ListItem>
+              </List>
+              <Divider />
+            </Typography>
             <Box sx={{ position: "relative", fontSize: "14px" }}>
-              <Box sx={{ display: "flex", justifyContent: "start" }}>
-                <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-                  Non-Powered Dam Scores
-                </Typography>
-              </Box>
               <Box
                 sx={{
                   display: "flex",
@@ -85,7 +106,6 @@ function Sidebar(props) {
                   </Alert>
                 </Box>
               ) : null}
-              <Divider />
               <Box
                 sx={{
                   display: "flex",
@@ -101,8 +121,7 @@ function Sidebar(props) {
                   Close
                 </Button>
               </Box>
-              <br />
-              <Typography variant="h5">Start Exploring NPDs</Typography>
+              <Divider />
               <br />
               <Typography variant="subtitle2">
                 Scoring Layers and Weights

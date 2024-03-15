@@ -2,13 +2,14 @@
 import React from "react";
 
 // Material
-import { Box, Divider, Container, Grid, Typography } from "@mui/material";
+import { Box, Divider, Grid, Typography } from "@mui/material";
 
 // Google Analytics
 import ReactGA from "react-ga4";
 
 // Components
 import Footer from "../components/footer";
+import Logos from "../components/logos";
 
 function About() {
   // GA pageview
@@ -19,13 +20,15 @@ function About() {
       container
       direction={"column"}
       sx={{
+        position: "relative",
+        top: "15vh",
         width: "90vw",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
       }}
     >
-      <Grid item xs={12}>
+      <Grid item xs={9}>
         <Box sx={{ width: "75vw" }}>
           <Typography variant="h4" component="h2">
             About
@@ -85,6 +88,19 @@ function About() {
             on the grid, community, industry, and environmental benefits.
           </Typography>
           <br />
+        </Box>
+        <br />
+      </Grid>
+      <Grid item xs={1}>
+        <Box sx={{ width: "75vw" }}>
+          <Grid container direction={"row"}>
+            <Grid item xs={6}>
+              <Logos background={"white"} />
+            </Grid>
+            <Grid item xs={6}>
+              <Footer font={"black"} />
+            </Grid>
+          </Grid>
         </Box>
       </Grid>
     </Grid>

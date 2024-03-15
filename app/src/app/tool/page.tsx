@@ -10,7 +10,14 @@ import { useState, useEffect } from "react";
 import { validate, query } from "./helpers";
 
 // Material
-import { Box, Button, Grid, Skeleton, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Divider,
+  Grid,
+  Skeleton,
+  Typography,
+} from "@mui/material";
 
 // Icons
 import ChevronRight from "@mui/icons-material/ChevronRight";
@@ -25,9 +32,6 @@ import DataTable from "./map/datatable";
 const Map = dynamic(() => import("./map/map"), {
   ssr: false,
 });
-
-// Dependencies
-import axios from "axios";
 
 // Google Analytics
 import ReactGA from "react-ga4";
@@ -136,8 +140,12 @@ function Tool() {
   }, []);
 
   return (
-    <Grid container direction={"row"}>
-      <Grid item xs={3} md={3} lg={3}>
+    <Grid
+      container
+      direction={"row"}
+      sx={{ position: "relative", top: "15vh" }}
+    >
+      <Grid item xs={2} md={2} lg={2}>
         {open ? (
           <Sidebar
             handleClose={handleClose}
@@ -146,19 +154,78 @@ function Tool() {
             valid={valid}
           />
         ) : (
-          <Box sx={{ display: "flex", justifyContent: "center" }}>
-            <Button
-              className="bg-electricity hover:bg-cherenkov text-white rounded"
-              onClick={handleOpen}
-              sx={{ width: "65%" }}
-              endIcon={<ChevronRight />}
+          <Grid container direction={"column"} spacing={4}>
+            <Grid
+              item
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                width: "100%",
+              }}
             >
-              Open
-            </Button>
-          </Box>
+              <Button
+                className="bg-electricity hover:bg-cherenkov text-white rounded"
+                onClick={handleOpen}
+                sx={{ width: "65%" }}
+                endIcon={<ChevronRight />}
+              >
+                Open
+              </Button>
+            </Grid>
+            <Grid item>
+              <Box sx={{ padding: "1.5rem" }}>
+                <Typography variant={"h6"} component={"h6"}>
+                  Explore the NPD map
+                </Typography>
+                <Divider />
+                <Typography variant={"body2"} component={"p"}>
+                  The map contains all non-powered dams in the NPD HYDRO
+                  database, as well as any visual layers you've selected using
+                  the scoring utility at the left of this page.
+                  <br />
+                  <br />
+                  If you want to make adjustments, you can click the{" "}
+                  <Typography variant="caption">OPEN</Typography> button, make
+                  your changes, and then click{" "}
+                  <Typography variant="caption">
+                    CALCLUATE NPD SCORES
+                  </Typography>{" "}
+                  again.
+                  <br />
+                  <br />
+                  NPD candidates are ranked according to your scoring layers and
+                  weights.
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item></Grid>
+            <Grid item>
+              <Box sx={{ padding: "1.5rem" }}>
+                <Typography variant={"h6"} component={"h6"}>
+                  Inspect NPD data
+                </Typography>
+                <Divider />
+                <Typography variant={"body2"} component={"p"}>
+                  The data table contains all NPD metadata in the NPD HYDRO
+                  database. You can scroll left or right on the table to examine
+                  NPD attributes. Hover over any column headers for more
+                  detailed information.
+                  <br />
+                  <br />
+                  This table updates automatically if you make any changes to
+                  your scoring layers and weights.
+                  <br />
+                  <br />
+                  You can export the results of your query by clicking the{" "}
+                  <Typography variant="caption">EXPORT TABLE</Typography>{" "}
+                  button.
+                </Typography>
+              </Box>
+            </Grid>
+          </Grid>
         )}
       </Grid>
-      <Grid item xs={9} md={6} lg={9}>
+      <Grid item xs={9} md={10} lg={9}>
         {dams ? (
           <>
             <Map data={data} open={open} setPopup={setPopup} />

@@ -11,10 +11,7 @@ import StoreProvider from "./store";
 import Theme from "./themes/theme";
 
 // Components
-import Header from "./header";
-
-// Material
-import { Box } from "@mui/material";
+import Header from "./components/header";
 
 export const metadata: Metadata = {
   title: "NPD HYDRO",
@@ -33,8 +30,7 @@ export default function RootLayout({
         <StoreProvider>
           <body>
             <Header />
-            {/* Offset child components by 15vh to account for the AppBar */}
-            <Box sx={{ position: "absolute", top: "15vh" }}>{children}</Box>
+            {children}
           </body>
         </StoreProvider>
       </html>

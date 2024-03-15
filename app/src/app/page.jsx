@@ -18,89 +18,119 @@ import {
 // Next
 import Link from "next/link";
 
+// Components
+import Logos from "./components/logos";
+import Footer from "./components/footer";
+
 function Home() {
   const vidRef = useRef();
 
   useEffect(() => {
-    vidRef.current.play();
+    // vidRef.current.play();
   }, []);
 
   return (
-    <Grid container sx={{ position: "relative", top: "-15vh" }}>
-      <Grid item sx={{ height: "85vh" }}>
-        <Card sx={{ height: "100vh" }}>
-          <video src="/idahofalls.mov" ref={vidRef} muted autoPlay loop />
-          <CardContent
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              textAlign: "center",
-            }}
-          >
-            <Typography
-              variant="h1"
-              component="h1"
-              sx={{
-                fontWeight: "bold",
-                color: "white",
-                opacity: "70%",
-                textShadow:
-                  "2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000",
+    <>
+      <Grid
+        direction={"column"}
+        container
+        sx={{ position: "relative", top: "10vh" }}
+        xs={12}
+      >
+        <Grid item sx={{ height: "90vh" }}>
+          <Card sx={{ height: "90vh" }}>
+            <video src="/idahofalls.mov" ref={vidRef} muted autoPlay loop />
+            <CardContent
+              style={{
+                position: "absolute",
+                top: "40%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                textAlign: "center",
               }}
             >
-              NPD HYDRO
-              <Divider sx={{ borderBottomColor: "white" }} />
-            </Typography>
-            <br />
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
-              <Link
-                style={{
-                  textDecoration: "none",
-                  backgroundColor: "black",
+              <Typography
+                variant="h1"
+                component="h1"
+                sx={{
+                  fontWeight: "bold",
+                  color: "white",
+                  textShadow:
+                    "2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000",
                 }}
-                href="/home"
               >
-                <ListItemButton
-                  sx={{
-                    color: "white",
-                    padding: 0,
-                    background: "black",
+                NPD HYDRO
+              </Typography>
+              <Divider sx={{ borderBottomColor: "white" }} />
+              <Typography
+                variant="body"
+                component="p"
+                sx={{
+                  fontWeight: "bold",
+                  color: "white",
+                  textShadow:
+                    "1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000",
+                }}
+              >
+                A non-powered dam assessment utility, for research professionals
+              </Typography>
+              <br />
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <Link
+                  style={{
+                    textDecoration: "none",
+                    backgroundColor: "black",
                   }}
-                  dense={true}
+                  href="/home"
                 >
-                  <ListItem sx={{ padding: 0 }}>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        width: "200px",
-                      }}
-                    >
-                      <Typography
+                  <ListItemButton
+                    sx={{
+                      color: "white",
+                      padding: 0,
+                      background: "black",
+                    }}
+                    dense={true}
+                  >
+                    <ListItem sx={{ padding: 0 }}>
+                      <Box
                         sx={{
-                          padding: "0.5rem",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          width: "200px",
                         }}
-                        variant="h6"
                       >
-                        Start
-                      </Typography>
-                    </Box>
-                  </ListItem>
-                </ListItemButton>
-              </Link>
-            </Box>
-          </CardContent>
-        </Card>
+                        <Typography
+                          sx={{
+                            padding: "0.5rem",
+                          }}
+                          variant="h6"
+                        >
+                          Start
+                        </Typography>
+                      </Box>
+                    </ListItem>
+                  </ListItemButton>
+                </Link>
+              </Box>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid container direction={"row"} sx={{ height: "15vh" }}>
+          <Grid item xs={6}>
+            <Logos background={"black"} />
+          </Grid>
+          <Grid item xs={6} sx={{ background: "black" }}>
+            <Footer font={"white"} />
+          </Grid>
+        </Grid>
       </Grid>
-    </Grid>
+    </>
   );
 }
 
