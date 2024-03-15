@@ -143,7 +143,7 @@ function Tool() {
     <Grid
       container
       direction={"row"}
-      sx={{ position: "relative", top: "15vh" }}
+      sx={{ position: "relative", top: "12.5vh" }}
     >
       <Grid item xs={2} md={2} lg={2}>
         {open ? (

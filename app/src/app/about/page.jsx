@@ -1,5 +1,7 @@
+"use client";
+
 // React
-import React from "react";
+import { useState, useEffect } from "react";
 
 // Material
 import { Box, Divider, Grid, Typography } from "@mui/material";
@@ -14,6 +16,20 @@ import Logos from "../components/logos";
 function About() {
   // GA pageview
   ReactGA.send({ hitType: "pageview", page: "/about" });
+
+  // Window dimensions
+  let [mobile, setMobile] = useState(false);
+
+  useEffect(() => {
+    function handleResize() {
+      window.innerWidth < 768 ? setMobile(true) : setMobile(false); // Mobile Devices can't use the tool
+    }
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [mobile]);
 
   return (
     <Grid
@@ -91,17 +107,15 @@ function About() {
         </Box>
         <br />
       </Grid>
-      <Grid item xs={1}>
-        <Box sx={{ width: "75vw" }}>
-          <Grid container direction={"row"}>
-            <Grid item xs={6}>
-              <Logos background={"white"} />
-            </Grid>
-            <Grid item xs={6}>
-              <Footer font={"black"} />
-            </Grid>
+      <Grid item xs>
+        <Grid container direction={mobile ? "column" : "row"}>
+          <Grid item xs={6}>
+            <Logos background={"white"} />
           </Grid>
-        </Box>
+          <Grid item xs={6}>
+            <Footer font={"black"} />
+          </Grid>
+        </Grid>
       </Grid>
     </Grid>
   );

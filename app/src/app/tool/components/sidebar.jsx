@@ -56,8 +56,8 @@ function Sidebar(props) {
           [`& .MuiDrawer-paper`]: {
             maxWidth: "400px",
             boxSizing: "border-box",
-            maxHeight: "90vh",
-            top: "10vh",
+            maxHeight: "92.5vh",
+            top: "7.5vh",
             zIndex: 5,
           },
         }}

@@ -39,7 +39,7 @@ function Header() {
           zIndex: 10,
         }}
       >
-        <Toolbar sx={{ height: "10vh" }}>
+        <Toolbar sx={{ height: "7.5vh" }}>
           <Link
             style={{
               textDecoration: "none",
@@ -55,6 +55,7 @@ function Header() {
             >
               <ListItem sx={{ padding: 0 }}>
                 <Typography
+                  variant="subtitle1"
                   sx={{
                     color: "white",
                     fontWeight: "bold",
@@ -71,7 +72,10 @@ function Header() {
           <Link style={{ textDecoration: "none" }} href="/home">
             <ListItemButton sx={{ color: "white", padding: 0 }} dense={true}>
               <ListItem sx={{ padding: 0 }}>
-                <Typography sx={{ padding: "0.25rem" }} variant="subtitle2">
+                <Typography
+                  sx={{ padding: "0.25rem", fontSize: "1rem" }}
+                  variant="subtitle2"
+                >
                   HOME
                 </Typography>
               </ListItem>

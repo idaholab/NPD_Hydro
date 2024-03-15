@@ -16,27 +16,27 @@ function Logos(props: props) {
           height: "100%",
           width: "100%",
           backgroundColor: props.background,
-          padding: 0,
+          padding: "1.5rem",
         }}
       >
         <Box
           component="img"
           sx={{
-            width: "15%",
+            width: "20%",
           }}
           src={"/inl-logo-stacked.png"}
         />
         <Box
           component="img"
           sx={{
-            width: "25%",
+            width: "30%",
           }}
           src={"/pnnl-logo-copper.png"}
         />
         <Box
           component="img"
           sx={{
-            width: "25%",
+            width: "30%",
           }}
           src={"/sapere-logo.png"}
         />

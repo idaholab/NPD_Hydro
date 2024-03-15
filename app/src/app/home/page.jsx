@@ -6,6 +6,7 @@ import React, { useState, useEffect } from "react";
 import { Box, Divider, Grid, Typography } from "@mui/material";
 
 // Components
+import Logos from "../components/logos";
 import Footer from "../components/footer";
 import Questionnaire from "./questionnaire/questionnaire";
 
@@ -34,7 +35,7 @@ function Home() {
         width: "100vw",
         height: "90%",
         justifyContent: "center",
-        padding: "0 12rem",
+        padding: "0 3rem",
       }}
       spacing={3}
     >
@@ -94,7 +95,14 @@ function Home() {
         </Grid>
       </Grid>
       <Grid item xs={12} sx={{ height: "10vh" }}>
-        <Footer font={"black"} />
+        <Grid container direction={mobile ? "column" : "row"}>
+          <Grid item xs={6}>
+            <Logos background={"white"} />
+          </Grid>
+          <Grid item xs={6}>
+            <Footer font={"black"} />
+          </Grid>
+        </Grid>
       </Grid>
     </Grid>
   );

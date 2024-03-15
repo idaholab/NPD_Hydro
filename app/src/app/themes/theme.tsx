@@ -8,6 +8,15 @@ import {
 } from "@mui/material/styles";
 
 let theme = createTheme();
+theme.typography = {
+  ...theme.typography,
+  subtitle2: {
+    fontSize: "1rem",
+    "@media (max-width:768px)": {
+      fontSize: ".5rem",
+    },
+  },
+};
 theme = responsiveFontSizes(theme);
 
 const Theme = ({ children }: { children: React.ReactNode }) => {
