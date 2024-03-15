@@ -4,6 +4,7 @@ on:
   push:
     branches: ["development"]
 jobs:
+  # Build the containers
   build:
     # Checkout the repository
     runs-on: [self-hosted]
@@ -12,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          repository: Digital-Engineering/npd-hydro
+          repository: Digital-Engineering/npd-next
           ref: development
           lfs: true
       - name: Git LFS Checkout
@@ -48,7 +49,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          repository: Digital-Engineering/npd-hydro
+          repository: Digital-Engineering/npd-next
           ref: development
 
       #Download kubectl

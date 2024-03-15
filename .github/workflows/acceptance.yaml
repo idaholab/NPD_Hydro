@@ -13,8 +13,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          lfs: true
+          repository: Digital-Engineering/npd-next
           ref: main
+          lfs: true
       - name: Git LFS Checkout
         run: git lfs pull
 
@@ -48,6 +49,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
+          repository: Digital-Engineering/npd-next
           ref: main
 
       # Download kubectl
@@ -95,7 +97,7 @@ jobs:
           container=$(kubectl get pods --no-headers -o custom-columns=":metadata.name" --namespace npd-acc | grep npd-db)
           echo $container
           kubectl exec $container --namespace npd-acc -- sh -c "psql --quiet --user $POSTGRES_USER postgres < /data/npd/pg_dump.sql"
-          
+
   database:
     needs: kubernetes
     runs-on: [self-hosted]
