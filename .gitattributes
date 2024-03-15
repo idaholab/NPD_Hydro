@@ -4,5 +4,7 @@
 *.sh text eol=lf
 # gdb
 *.sql filter=lfs diff=lfs merge=lfs -text
+# "cache"
+*json filter=lfs diff=lfs merge=lfs -text
 *.json filter=lfs diff=lfs merge=lfs -text
 *.mov filter=lfs diff=lfs merge=lfs -text
