@@ -1,0 +1,6 @@
+*.env
+.vscode
+db
+__pycache__
+certs
+*.crt

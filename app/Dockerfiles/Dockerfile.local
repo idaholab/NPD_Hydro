@@ -2,6 +2,8 @@ FROM node:latest
 
 WORKDIR /usr/src/app
 
+ENV NEXT_PUBLIC_DJANGO_HOST http://django:8000
+
 COPY . .
 
 # Configure INL certs and environment variables

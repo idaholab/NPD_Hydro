@@ -12,8 +12,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
   let counties = await axios
     .post(`${base}/npd/counties`, body)
     .then((response) => {
-      console.log(response);
-      return response.data;
+      return NextResponse.json(response.data);
     })
     .catch((error) => {
       console.log("Error: " + error);

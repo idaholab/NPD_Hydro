@@ -1,0 +1,3 @@
+FROM postgres:latest AS npd-hydro-questionnaire-db
+
+ENV POSTGRES_DB npd_questionnaire

@@ -1,0 +1,114 @@
+name: Build Development
+on:
+  workflow_dispatch:
+  push:
+    branches: ["development"]
+jobs:
+  build:
+    # Checkout the repository
+    runs-on: [self-hosted]
+    environment: development
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          repository: Digital-Engineering/npd-hydro
+          ref: development
+          lfs: true
+      - name: Git LFS Checkout
+        run: git lfs pull
+
+      # Builds the required React app, Django app, and PostGIS database images
+      - shell: bash
+        name: Container Build
+        env:
+          ACR_SP_USER: ${{ secrets.CI_SP_USER }}
+          ACR_SP_PASSWORD: ${{ secrets.CI_SP_PASSWORD }}
+          ACR_REGISTRY: ${{ secrets.CI_REGISTRY }}
+          ACR_PATH: ${{ secrets.CI_REGISTRY_PATH }}
+          ACR_SP_TENANT: ${{ secrets.CI_SP_TENANT }}
+          ACR_SUBSCRIPTION: ${{ secrets.CI_ACR_SUBSCRIPTION }}
+          GITHUB_RUN_NUMBER: ${{ github.RUN_NUMBER }}
+        run: |
+          cd $GITHUB_WORKSPACE
+          az cloud set --name AzureUSGovernment
+          az login --service-principal -u $ACR_SP_USER -p $ACR_SP_PASSWORD --tenant $ACR_SP_TENANT
+          az account set --subscription $ACR_SUBSCRIPTION
+          az acr build --registry $ACR_REGISTRY --image $ACR_PATH:react-dev-$GITHUB_RUN_NUMBER --file app/Dockerfiles/Dockerfile.prod app
+          az acr build --registry $ACR_REGISTRY --image $ACR_PATH:django-dev-$GITHUB_RUN_NUMBER --file server/Dockerfiles/Dockerfile.prod server
+          az acr build --registry $ACR_REGISTRY --image $ACR_PATH:npd-db-dev-$GITHUB_RUN_NUMBER --file gdb/Dockerfiles/Dockerfile.npd.prod gdb
+          az acr build --registry $ACR_REGISTRY --image $ACR_PATH:npd-questionnaire-db-dev-$GITHUB_RUN_NUMBER --file gdb/Dockerfiles/Dockerfile.questionnaire.prod gdb
+
+  kubernetes:
+    needs: build
+    runs-on: [self-hosted]
+    environment: development
+    steps:
+      # Checkout the repository
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          repository: Digital-Engineering/npd-hydro
+          ref: development
+
+      #Download kubectl
+      - uses: azure/setup-kubectl@v3
+
+      # Overwrites ${VARIABLES} in the kube manifest with secrets
+      - shell: bash
+        name: Manifest env substitute
+        env:
+          CI_REGISTRY: ${{ secrets.CI_REGISTRY }}
+          CI_REGISTRY_PATH: ${{ secrets.CI_REGISTRY_PATH }}
+          GITHUB_RUN_NUMBER: ${{ github.RUN_NUMBER }}
+        run: |
+          cd $GITHUB_WORKSPACE/kubernetes
+          envsubst < development.yaml > manifest.yaml
+
+      # Initializes the kube context, introducing kubectl to the cluster
+      - uses: azure/k8s-set-context@v3
+        name: Configure K8s
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.KUBE_CONFIG }}
+          context: deploy-service-account
+
+      # Deploys the kube manifest
+      - uses: Azure/k8s-deploy@v4
+        name: Deploy K8s Workload
+        with:
+          resource-group: ${{ secrets.AKS_RESOURCE_GROUP }}
+          name: ${{ secrets.AKS_CLUSTER_NAME }}
+          namespace: npd-dev
+          action: deploy
+          force: true
+          strategy: basic
+          manifests: |
+            kubernetes/manifest.yaml
+
+  database:
+    needs: kubernetes
+    runs-on: [self-hosted]
+    environment: development
+    steps:
+      #Download kubectl
+      - uses: azure/setup-kubectl@v3
+
+      # Initializes the kube context, introducing kubectl to the cluster
+      - uses: azure/k8s-set-context@v3
+        name: Configure K8s
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.KUBE_CONFIG }}
+          context: deploy-service-account
+
+      # This script catches the PostGIS database pod name, and executes the psql script against it, loading the .sql dump
+      - shell: bash
+        name: Upload PostGIS data
+        env:
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+        run: |
+          container=$(kubectl get pods --no-headers -o custom-columns=":metadata.name" --namespace npd-dev | grep npd-db)
+          echo $container
+          kubectl exec $container --namespace npd-dev -- sh -c "psql --quiet --user $POSTGRES_USER postgres < /data/npd/pg_dump.sql"

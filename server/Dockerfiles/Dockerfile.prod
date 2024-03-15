@@ -1,0 +1,20 @@
+FROM python:latest AS npd-hydro-django
+
+WORKDIR  /usr/src/server
+
+COPY . .
+
+# Update OS
+RUN apt-get update && apt-get -y upgrade \
+    && chmod 744 migrations.sh
+
+# PostGIS Engine dependencies
+RUN apt-get install -y gdal-bin
+
+# Django Requirements
+RUN pip3 install --upgrade pip
+RUN pip3 install -r ./server/requirements.txt
+RUN pip3 install gunicorn
+RUN pip3 install gevent
+
+ENTRYPOINT /bin/bash ./entrypoint.prod.sh

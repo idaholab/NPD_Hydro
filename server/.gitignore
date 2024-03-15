@@ -1,0 +1,7 @@
+# created by virtualenv automatically
+.env
+Scripts
+Lib
+__pycache__
+pyvenv.cfg
+nlpr/migrations

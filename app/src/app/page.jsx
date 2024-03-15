@@ -47,7 +47,6 @@ function Home() {
         direction={"column"}
         container
         sx={{ position: "relative", top: "7.5vh", backgroundColor: "black" }}
-        xs={12}
       >
         {mobile ? (
           <Grid item sx={{ height: "90vh" }}>

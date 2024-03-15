@@ -1,0 +1,47 @@
+version: "3"
+services:
+  app:
+    build:
+      context: ./app
+      dockerfile: Dockerfiles/Dockerfile.prod
+    ports:
+      - "3000:3000"
+  django:
+    build:
+      context: ./server
+      dockerfile: ./Dockerfiles/Dockerfile.prod
+    entrypoint: ./entrypoint.prod.sh
+    ports:
+      - "8000:80"
+    volumes:
+      - "./server:/usr/src/server"
+    env_file:
+      - ./server/server/.env.local
+    depends_on:
+      - npd_db
+      - npd_questionnaire
+  npd_db:
+    build:
+      context: ./gdb
+      dockerfile: ./Dockerfiles/Dockerfile.npd.prod
+    restart: always
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./gdb/environment/.env.local.npd
+  npd_questionnaire:
+    build:
+      context: ./gdb
+      dockerfile: ./Dockerfiles/Dockerfile.questionnaire.prod
+    ports:
+      - "5433:5432"
+    env_file:
+      - ./gdb/environment/.env.local.questionnaire
+  pgAdmin:
+    image: dpage/pgadmin4
+    ports:
+      - "5050:80"
+    env_file:
+      - ./gdb/environment/.env.local.pgadmin
+    depends_on:
+      - npd_db

@@ -21,11 +21,13 @@ import {
 
 // Icons
 import ChevronRight from "@mui/icons-material/ChevronRight";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 // Next
 import dynamic from "next/dynamic";
 
 // Components
+import Help from "./components/help";
 import Sidebar from "./components/sidebar";
 import DataTable from "./map/datatable";
 // You have to disable server side rendering for ArcGIS maps because they need access to the DOM at runtime
@@ -45,6 +47,7 @@ function Tool() {
 
   // Responsiveness
   let [open, setOpen] = useState(true);
+  let [help, setHelp] = useState(false);
 
   function handleOpen() {
     setOpen(true);
@@ -52,6 +55,10 @@ function Tool() {
 
   function handleClose() {
     setOpen(false);
+  }
+
+  function handleHelp() {
+    setHelp(!help);
   }
 
   // Window dimensions
@@ -172,55 +179,23 @@ function Tool() {
                 Open
               </Button>
             </Grid>
-            <Grid item>
-              <Box sx={{ padding: "1.5rem" }}>
-                <Typography variant={"h6"} component={"h6"}>
-                  Explore the NPD map
-                </Typography>
-                <Divider />
-                <Typography variant={"body2"} component={"p"}>
-                  The map contains all non-powered dams in the NPD HYDRO
-                  database, as well as any visual layers you've selected using
-                  the scoring utility at the left of this page.
-                  <br />
-                  <br />
-                  If you want to make adjustments, you can click the{" "}
-                  <Typography variant="caption">OPEN</Typography> button, make
-                  your changes, and then click{" "}
-                  <Typography variant="caption">
-                    CALCLUATE NPD SCORES
-                  </Typography>{" "}
-                  again.
-                  <br />
-                  <br />
-                  NPD candidates are ranked according to your scoring layers and
-                  weights.
-                </Typography>
-              </Box>
-            </Grid>
-            <Grid item></Grid>
-            <Grid item>
-              <Box sx={{ padding: "1.5rem" }}>
-                <Typography variant={"h6"} component={"h6"}>
-                  Inspect NPD data
-                </Typography>
-                <Divider />
-                <Typography variant={"body2"} component={"p"}>
-                  The data table contains all NPD metadata in the NPD HYDRO
-                  database. You can scroll left or right on the table to examine
-                  NPD attributes. Hover over any column headers for more
-                  detailed information.
-                  <br />
-                  <br />
-                  This table updates automatically if you make any changes to
-                  your scoring layers and weights.
-                  <br />
-                  <br />
-                  You can export the results of your query by clicking the{" "}
-                  <Typography variant="caption">EXPORT TABLE</Typography>{" "}
-                  button.
-                </Typography>
-              </Box>
+            <Grid
+              item
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                width: "100%",
+              }}
+            >
+              <Button
+                className="bg-electricity hover:bg-cherenkov text-white rounded"
+                onClick={handleHelp}
+                sx={{ width: "65%" }}
+                endIcon={<InfoOutlinedIcon />}
+              >
+                Help
+              </Button>
+              {help ? <Help handleHelp={handleHelp} help={help} /> : null}
             </Grid>
           </Grid>
         )}

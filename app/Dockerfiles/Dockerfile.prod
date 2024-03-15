@@ -1,0 +1,14 @@
+FROM node:latest
+
+RUN apt-get update && apt-get -y upgrade
+
+ENV NEXT_PUBLIC_DJANGO_HOST npd-django-service
+
+WORKDIR /usr/src/app
+
+COPY . .
+
+RUN npm install
+RUN npm run build
+
+CMD [ "npm", "run", "prod" ]

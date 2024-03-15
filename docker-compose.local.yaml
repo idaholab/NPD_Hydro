@@ -1,0 +1,45 @@
+version: "3.7"
+services:
+  app:
+    build:
+      context: "./app"
+      dockerfile: "./Dockerfiles/Dockerfile.local"
+    command: ["npm", "run", "dev"]
+    environment:
+      - WATCHPACK_POLLING=true
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./app:/usr/src/app"
+      - /usr/src/app/node_modules
+  django:
+    build:
+      context: ./server
+      dockerfile: ./Dockerfiles/Dockerfile.local
+    entrypoint: ./entrypoint.local.sh
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./server:/usr/src/server"
+    env_file:
+      - ./server/server/.env.local
+    depends_on:
+      - npd_db
+      - npd_questionnaire
+  npd_db:
+    build:
+      context: ./gdb
+      dockerfile: ./Dockerfiles/Dockerfile.npd.prod
+    restart: always
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./gdb/environment/.env.local.npd
+  npd_questionnaire:
+    build:
+      context: ./gdb
+      dockerfile: ./Dockerfiles/Dockerfile.questionnaire.prod
+    ports:
+      - "5433:5432"
+    env_file:
+      - ./gdb/environment/.env.local.questionnaire

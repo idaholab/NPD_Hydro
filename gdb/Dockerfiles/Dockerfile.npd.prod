@@ -1,0 +1,7 @@
+FROM postgis/postgis:latest AS npd-hydro-db
+
+WORKDIR /var/lib/postgresql/data
+
+ENV POSTGRES_DB npd_data
+
+COPY ./data/pg_dump.sql /data/npd/pg_dump.sql
