@@ -2,9 +2,6 @@ FROM node:latest
 
 RUN apt-get update && apt-get -y upgrade
 
-ENV NEXT_PUBLIC_DJANGO_HOST npd-django-service
-ENV NODE_ENV production
-
 WORKDIR /usr/src/app
 
 COPY . .
@@ -12,4 +9,5 @@ COPY . .
 RUN npm install
 RUN npm run build
 
-CMD [ "NODE_ENV=production", "next", "start" ]
+CMD [ "npm", "run", "prod" ]
+
