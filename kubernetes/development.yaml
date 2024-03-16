@@ -155,8 +155,8 @@ spec:
             - containerPort: 80
           resources:
             limits:
-              cpu: "2500m"
-              memory: "1024M"
+              cpu: "3500m"
+              memory: "2048M"
       restartPolicy: Always
 ---
 # Service
