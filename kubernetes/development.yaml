@@ -52,7 +52,7 @@ spec:
           image: ${CI_REGISTRY}/${CI_REGISTRY_PATH}:react-dev-${GITHUB_RUN_NUMBER}
           imagePullPolicy: Always
           ports:
-            - containerPort: 80
+            - containerPort: 3000
           resources:
             limits:
               cpu: "250m"
@@ -70,7 +70,7 @@ spec:
   type: ClusterIP
   ports:
     - port: 80
-      targetPort: 80
+      targetPort: 3000
   selector:
     app: npd-app
 ---
