@@ -2,7 +2,7 @@
 
 const nextConfig = {
   env: {
-    NEXT_PUBLIC_DJANGO_HOST: "npd-django-service",
+    NEXT_PUBLIC_DJANGO_HOST: process.env.NEXT_PUBLIC_DJANGO_HOST,
   },
 };
 

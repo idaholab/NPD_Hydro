@@ -51,6 +51,9 @@ spec:
         - name: npd-app
           image: ${CI_REGISTRY}/${CI_REGISTRY_PATH}:react-dev-${GITHUB_RUN_NUMBER}
           imagePullPolicy: Always
+          env:
+            - name: NEXT_PUBLIC_DJANGO_HOST
+              value: npd-django-service
           ports:
             - containerPort: 3000
           resources:
