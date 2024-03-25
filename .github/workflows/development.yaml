@@ -86,30 +86,3 @@ jobs:
           strategy: basic
           manifests: |
             kubernetes/manifest.yaml
-
-  database:
-    needs: kubernetes
-    runs-on: [self-hosted]
-    environment: development
-    steps:
-      #Download kubectl
-      - uses: azure/setup-kubectl@v3
-
-      # Initializes the kube context, introducing kubectl to the cluster
-      - uses: azure/k8s-set-context@v3
-        name: Configure K8s
-        with:
-          method: kubeconfig
-          kubeconfig: ${{ secrets.KUBE_CONFIG }}
-          context: deploy-service-account
-
-      # This script catches the PostGIS database pod name, and executes the psql script against it, loading the .sql dump
-      - shell: bash
-        name: Upload PostGIS data
-        env:
-          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
-          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
-        run: |
-          container=$(kubectl get pods --no-headers -o custom-columns=":metadata.name" --namespace npd-dev | grep npd-db)
-          echo $container
-          kubectl exec $container --namespace npd-dev -- sh -c "psql --quiet --user $POSTGRES_USER postgres < /data/npd/pg_dump.sql"
