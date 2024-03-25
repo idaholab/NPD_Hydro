@@ -10,7 +10,7 @@ services:
     build:
       context: ./server
       dockerfile: ./Dockerfiles/Dockerfile.prod
-    entrypoint: ./entrypoint.prod.sh
+    command: ["tail", "-f", "/dev/null"]
     ports:
       - "8000:80"
     volumes:

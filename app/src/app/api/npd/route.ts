@@ -2,12 +2,12 @@
 import axios from "axios";
 
 // Types
-import { NextRequest, NextResponse } from "next/server";
-import { headers } from "next/headers";
+import { NextResponse } from "next/server";
 
-const base = process.env.NEXT_PUBLIC_DJANGO_HOST!;
+const base = process.env.DJANGO_HOST!;
 
 export const POST = async (req: Request, res: NextResponse) => {
+  console.log("NEXT_PUBLIC_DJANGO_HOST: " + base);
   const body = await req.json();
 
   let dams = await axios

@@ -12,9 +12,12 @@ RUN apt-get update && apt-get -y upgrade \
 RUN apt-get install -y gdal-bin
 
 # Django Requirements
+RUN pip config set global.trusted-host \
+    "pypi.org files.pythonhosted.org pypi.python.org" \
+    --trusted-host=pypi.python.org \
+    --trusted-host=pypi.org \
+    --trusted-host=files.pythonhosted.org
 RUN pip3 install --upgrade pip
 RUN pip3 install -r ./server/requirements.txt
-RUN pip3 install gunicorn
-RUN pip3 install gevent
 
 ENTRYPOINT /bin/bash ./entrypoint.prod.sh
