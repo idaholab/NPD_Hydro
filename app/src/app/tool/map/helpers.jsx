@@ -1,6 +1,7 @@
 import GeoJSONLayer from "@arcgis/core/layers/GeoJSONLayer";
 
 // Polygon Color Logic
+import Renderer from "@arcgis/core/renderers/Renderer";
 import ClassBreaksRenderer from "@arcgis/core/renderers/ClassBreaksRenderer";
 import UniqueValueRender from "@arcgis/core/renderers/UniqueValueRenderer";
 
@@ -45,7 +46,7 @@ export function GeoHazardsFactory(multiPolygons) {
   // Color Logic
   let low = {
     type: "simple-fill",
-    color: "rgba(56, 82, 77, .4)",
+    color: "rgba(65, 63, 84, .6)",
     style: "solid",
     outline: {
       width: 0.1,
@@ -55,7 +56,7 @@ export function GeoHazardsFactory(multiPolygons) {
 
   let medium = {
     type: "simple-fill",
-    color: "rgba(74, 124, 110, .4)",
+    color: "rgba(101, 93, 191, .6)",
     style: "solid",
     outline: {
       width: 0.1,
@@ -65,7 +66,7 @@ export function GeoHazardsFactory(multiPolygons) {
 
   let high = {
     type: "simple-fill",
-    color: "rgba(204, 190, 106, .4)",
+    color: "rgba(151, 164, 28, .6)",
     style: "solid",
     outline: {
       width: 0.1,
@@ -75,7 +76,7 @@ export function GeoHazardsFactory(multiPolygons) {
 
   let highest = {
     type: "simple-fill",
-    color: "rgba(255, 236, 153, .4)",
+    color: "rgba(255, 255, 100, .5)",
     style: "solid",
     outline: {
       width: 0.1,
@@ -154,7 +155,7 @@ export function GeoDroughtsFactory(layers) {
 
   let abnormally_dry = {
     type: "simple-fill",
-    color: "rgba(255, 255, 178, .4)",
+    color: "rgba(255, 255, 178, .6)",
     style: "solid",
     outline: {
       width: 0.1,
@@ -164,7 +165,7 @@ export function GeoDroughtsFactory(layers) {
 
   let moderate_drought = {
     type: "simple-fill",
-    color: "rgba(254, 204, 92, .4)",
+    color: "rgba(254, 204, 92, .6)",
     style: "solid",
     outline: {
       width: 0.1,
@@ -174,7 +175,7 @@ export function GeoDroughtsFactory(layers) {
 
   let severe_drought = {
     type: "simple-fill",
-    color: "rgba(253, 141, 60, .4)",
+    color: "rgba(253, 141, 60, .6)",
     style: "solid",
     outline: {
       width: 0.1,
@@ -184,7 +185,7 @@ export function GeoDroughtsFactory(layers) {
 
   let extreme_drought = {
     type: "simple-fill",
-    color: "rgba(240, 59, 32, .4)",
+    color: "rgba(240, 59, 32, .6)",
     style: "solid",
     outline: {
       width: 0.1,
@@ -194,7 +195,7 @@ export function GeoDroughtsFactory(layers) {
 
   let exceptional_drought = {
     type: "simple-fill",
-    color: "rgba(189, 0, 38, .4)",
+    color: "rgba(189, 0, 38, .6)",
     style: "solid",
     outline: {
       width: 0.1,
@@ -298,7 +299,7 @@ export function GeoElectricityPricesFactory(multiPolygons) {
   // Color Logic
   let low = {
     type: "simple-fill",
-    color: "rgba(56, 82, 77, .4)",
+    color: "rgba(65, 63, 84, .6)",
     style: "solid",
     outline: {
       width: 0.1,
@@ -308,7 +309,7 @@ export function GeoElectricityPricesFactory(multiPolygons) {
 
   let medium = {
     type: "simple-fill",
-    color: "rgba(74, 124, 110, .4)",
+    color: "rgba(101, 93, 191, .6)",
     style: "solid",
     outline: {
       width: 0.1,
@@ -318,7 +319,7 @@ export function GeoElectricityPricesFactory(multiPolygons) {
 
   let high = {
     type: "simple-fill",
-    color: "rgba(204, 190, 106, .4)",
+    color: "rgba(151, 164, 28, .6)",
     style: "solid",
     outline: {
       width: 0.1,
@@ -328,7 +329,7 @@ export function GeoElectricityPricesFactory(multiPolygons) {
 
   let highest = {
     type: "simple-fill",
-    color: "rgba(255, 236, 153, .4)",
+    color: "rgba(255, 255, 100, .5)",
     style: "solid",
     outline: {
       width: 0.1,
@@ -434,7 +435,7 @@ export function GeoSocialVulnerabilityFactory(multiPolygons) {
   // Color Logic
   let low = {
     type: "simple-fill",
-    color: "rgba(56, 82, 77, .4)",
+    color: "rgba(65, 63, 84, .6)",
     style: "solid",
     outline: {
       width: 0.1,
@@ -444,7 +445,7 @@ export function GeoSocialVulnerabilityFactory(multiPolygons) {
 
   let medium = {
     type: "simple-fill",
-    color: "rgba(74, 124, 110, .4)",
+    color: "rgba(101, 93, 191, .6)",
     style: "solid",
     outline: {
       width: 0.1,
@@ -454,7 +455,7 @@ export function GeoSocialVulnerabilityFactory(multiPolygons) {
 
   let high = {
     type: "simple-fill",
-    color: "rgba(204, 190, 106, .4)",
+    color: "rgba(151, 164, 28, .6)",
     style: "solid",
     outline: {
       width: 0.1,
@@ -464,7 +465,7 @@ export function GeoSocialVulnerabilityFactory(multiPolygons) {
 
   let highest = {
     type: "simple-fill",
-    color: "rgba(255, 236, 153, .4)",
+    color: "rgba(255, 255, 100, .5)",
     style: "solid",
     outline: {
       width: 0.1,
@@ -570,7 +571,7 @@ export function GeoAqiFactory(multiPolygons) {
   // Color Logic
   let low = {
     type: "simple-fill",
-    color: "rgba(56, 82, 77, .4)",
+    color: "rgba(65, 63, 84, .6)",
     style: "solid",
     outline: {
       width: 0.1,
@@ -580,7 +581,7 @@ export function GeoAqiFactory(multiPolygons) {
 
   let medium = {
     type: "simple-fill",
-    color: "rgba(74, 124, 110, .4)",
+    color: "rgba(101, 93, 191, .6)",
     style: "solid",
     outline: {
       width: 0.1,
@@ -590,7 +591,7 @@ export function GeoAqiFactory(multiPolygons) {
 
   let high = {
     type: "simple-fill",
-    color: "rgba(204, 190, 106, .4)",
+    color: "rgba(151, 164, 28, .6)",
     style: "solid",
     outline: {
       width: 0.1,
@@ -1183,21 +1184,22 @@ export function GeoDamFactory(points) {
 
   let top = {
     type: "simple-marker",
-    color: "rgba(145, 207, 96, 1)",
+    color: "rgba(0, 255, 212, 1)",
     style: "circle",
     size: 14,
   };
 
   let middle = {
     type: "simple-marker",
-    color: "rgba(255, 255, 191, 1)",
+    color: "rgba(255, 170, 0, 1)",
     style: "circle",
     size: 10,
   };
 
+  //pink
   let low = {
     type: "simple-marker",
-    color: "rgba(252, 141, 89, 1)",
+    color: "rgba(255, 0, 153, 1)",
     style: "circle",
     size: 10,
   };
@@ -1501,7 +1503,7 @@ export function GeoEnergyCommunitiesFactory(multiPolygons) {
 
   let adjacent = {
     type: "simple-fill",
-    color: "rgba(253, 141, 60, .4)",
+    color: "rgba(35, 204, 255, .6)",
     style: "solid",
     outline: {
       width: 0.1,
@@ -1511,7 +1513,7 @@ export function GeoEnergyCommunitiesFactory(multiPolygons) {
 
   let closure = {
     type: "simple-fill",
-    color: "rgba(189, 0, 38, .4)",
+    color: "rgba(255, 77, 106, .6)",
     style: "solid",
     outline: {
       width: 0.1,
@@ -1593,7 +1595,7 @@ export function GeoDisadvCommunitiesFactory(multiPolygons) {
     type: "simple",
     symbol: {
       type: "simple-fill",
-      color: "rgba(65, 105, 225, 0.4)",
+      color: "rgba(65, 105, 225, 0.6)",
       outline: {
         width: 0.5,
         color: "gray",

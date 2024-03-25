@@ -16,9 +16,15 @@ import {
 // Next
 import Link from "next/link";
 
+// Router
+import { usePathname } from "next/navigation";
+
 function Header() {
   // Window dimensions
   let [mobile, setMobile] = useState(false);
+
+  // URL
+  const router = usePathname();
 
   useEffect(() => {
     function handleResize() {
@@ -70,7 +76,14 @@ function Header() {
           </Link>
           <Box sx={{ flexGrow: 1 }}></Box>
           <Link style={{ textDecoration: "none" }} href="/home">
-            <ListItemButton sx={{ color: "white", padding: 0 }} dense={true}>
+            <ListItemButton
+              sx={{
+                color: "white",
+                padding: 0,
+                textDecoration: router === "/home" ? "underline" : "unset",
+              }}
+              dense={true}
+            >
               <ListItem sx={{ padding: 0 }}>
                 <Typography
                   sx={{ padding: "0.25rem", fontSize: "1rem" }}
@@ -82,7 +95,14 @@ function Header() {
             </ListItemButton>
           </Link>
           <Link style={{ textDecoration: "none" }} href="/about">
-            <ListItemButton sx={{ color: "white", padding: 0 }} dense={true}>
+            <ListItemButton
+              sx={{
+                color: "white",
+                padding: 0,
+                textDecoration: router === "/about" ? "underline" : "unset",
+              }}
+              dense={true}
+            >
               <ListItem sx={{ padding: 0 }}>
                 <Typography sx={{ padding: "0.25rem" }} variant="subtitle2">
                   ABOUT
@@ -92,7 +112,14 @@ function Header() {
           </Link>
           {!mobile ? (
             <Link style={{ textDecoration: "none" }} href="/tool">
-              <ListItemButton sx={{ color: "white", padding: 0 }} dense={true}>
+              <ListItemButton
+                sx={{
+                  color: "white",
+                  padding: 0,
+                  textDecoration: router === "/tool" ? "underline" : "unset",
+                }}
+                dense={true}
+              >
                 <ListItem sx={{ padding: 0 }}>
                   <Typography sx={{ padding: "0.25rem" }} variant="subtitle2">
                     TOOL
@@ -102,7 +129,14 @@ function Header() {
             </Link>
           ) : null}
           <Link style={{ textDecoration: "none" }} href="/userguide">
-            <ListItemButton sx={{ color: "white", padding: 0 }} dense={true}>
+            <ListItemButton
+              sx={{
+                color: "white",
+                padding: 0,
+                textDecoration: router === "/userguide" ? "underline" : "unset",
+              }}
+              dense={true}
+            >
               <ListItem sx={{ padding: 0 }}>
                 <Typography sx={{ padding: "0.25rem" }} variant="subtitle2">
                   USER GUIDE

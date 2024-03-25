@@ -141,7 +141,13 @@ function Home() {
         ) : (
           <Grid item sx={{ height: "90vh" }}>
             <Box sx={{ height: "90vh" }}>
-              <video src="/idahofalls.mov" ref={vidRef} muted autoPlay loop />
+              <video
+                src="/idahofalls-small.mp4"
+                ref={vidRef}
+                muted
+                autoPlay
+                loop
+              />
               <Box
                 style={{
                   position: "absolute",
