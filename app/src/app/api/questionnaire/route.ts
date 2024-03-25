@@ -7,8 +7,10 @@ import { NextRequest, NextResponse } from "next/server";
 const base = process.env.DJANGO_HOST!;
 
 export const POST = async (req: NextRequest, res: NextResponse) => {
+  const url = new URL("questionnaire/questionnaire", base);
+
   await axios
-    .get(`${base}/questionnaire/questionnaire`)
+    .get(`${url}`)
     .then((response) => {
       return NextResponse.json(response.data);
     })

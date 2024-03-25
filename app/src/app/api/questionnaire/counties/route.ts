@@ -9,8 +9,10 @@ const base = process.env.DJANGO_HOST!;
 export const POST = async (req: NextRequest, res: NextResponse) => {
   const body = await req.json();
 
+  const url = new URL("npd/counties", base);
+
   let counties = await axios
-    .post(`${base}/npd/counties`, body)
+    .post(`${url}`, body)
     .then((response) => {
       return NextResponse.json(response.data);
     })
