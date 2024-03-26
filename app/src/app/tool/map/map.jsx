@@ -37,6 +37,7 @@ import {
 import Map from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView";
 import Expand from "@arcgis/core/widgets/Expand";
+import Extent from "@arcgis/core/geometry/Extent";
 import Legend from "@arcgis/core/widgets/Legend";
 
 // Axios
@@ -155,6 +156,9 @@ export default function ArcGIS(props) {
             buttonEnabled: true,
             breakpoint: false,
           },
+        };
+        view.constraints = {
+          minZoom: 4,
         };
 
         const legend = new Expand({

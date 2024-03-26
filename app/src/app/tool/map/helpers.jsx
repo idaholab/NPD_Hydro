@@ -1,7 +1,6 @@
 import GeoJSONLayer from "@arcgis/core/layers/GeoJSONLayer";
 
 // Polygon Color Logic
-import Renderer from "@arcgis/core/renderers/Renderer";
 import ClassBreaksRenderer from "@arcgis/core/renderers/ClassBreaksRenderer";
 import UniqueValueRender from "@arcgis/core/renderers/UniqueValueRenderer";
 
@@ -251,6 +250,7 @@ export function GeoDroughtsFactory(layers) {
   const geo = new GeoJSONLayer({
     title: "Drought Index",
     url: url,
+    minScale: 15000000,
     renderer: renderer,
     outFields: ["*"],
   });
@@ -387,6 +387,7 @@ export function GeoElectricityPricesFactory(multiPolygons) {
   const geo = new GeoJSONLayer({
     title: "Electricity Retail Price",
     url: url,
+    minScale: 15000000,
     renderer: renderer,
     popupTemplate: template,
   });
@@ -523,6 +524,7 @@ export function GeoSocialVulnerabilityFactory(multiPolygons) {
   const geo = new GeoJSONLayer({
     title: "Social Vulnerability Index",
     url: url,
+    minScale: 15000000,
     renderer: renderer,
     popupTemplate: template,
   });
@@ -642,6 +644,7 @@ export function GeoAqiFactory(multiPolygons) {
   const geo = new GeoJSONLayer({
     title: "Air Quality Index",
     url: url,
+    minScale: 15000000,
     renderer: renderer,
     popupTemplate: template,
   });
@@ -730,6 +733,7 @@ export function GeoHospitalFactory(points) {
   const geo = new GeoJSONLayer({
     title: "Hospitals",
     url: url,
+    minScale: 1500000,
     renderer: {
       type: "simple",
       symbol: {
@@ -742,7 +746,6 @@ export function GeoHospitalFactory(points) {
       label: "Hospital",
     },
     popupTemplate: template,
-    featureReduction: clusterConfig,
   });
 
   return geo;
@@ -832,6 +835,7 @@ export function GeoFossilFuelFactory(points) {
   const geo = new GeoJSONLayer({
     title: "Fossil Fuel Powerplant",
     url: url,
+    minScale: 15000000,
     renderer: {
       type: "simple",
       symbol: {
@@ -930,6 +934,7 @@ export function GeoManufacturingFactory(points) {
   const geo = new GeoJSONLayer({
     title: "Energy Intensive Facilities",
     url: url,
+    minScale: 1500000,
     renderer: {
       type: "simple",
       symbol: {
@@ -941,7 +946,6 @@ export function GeoManufacturingFactory(points) {
       label: "Energy Intensive Facility",
     },
     popupTemplate: template,
-    featureReduction: clusterConfig,
   });
 
   return geo;
@@ -1028,6 +1032,7 @@ export function GeoNaturalGasFactory(points) {
     title: "Natural Gas Compressor Stations",
     popupTemplate: template,
     url: url,
+    minScale: 15000000,
     renderer: {
       type: "simple",
       symbol: {
@@ -1124,6 +1129,7 @@ export function GeoPublicSchoolFactory(points) {
     title: "Public Schools",
     popupTemplate: template,
     url: url,
+    minScale: 1500000,
     renderer: {
       type: "simple",
       symbol: {
@@ -1134,7 +1140,6 @@ export function GeoPublicSchoolFactory(points) {
       },
       label: "Public School",
     },
-    featureReduction: clusterConfig,
   });
 
   return geo;
@@ -1281,6 +1286,7 @@ export function GeoWindspeedFactory(multiPolygons) {
   const geo = new GeoJSONLayer({
     title: "Average Windspeed",
     url: url,
+    minScale: 15000000,
   });
 
   return geo;
@@ -1321,6 +1327,7 @@ export function GeoHorizontalIrradianceFactory(multiPolygons) {
   const geo = new GeoJSONLayer({
     title: "Horizontal Irradiance",
     url: url,
+    minScale: 15000000,
   });
 
   return geo;
@@ -1366,6 +1373,7 @@ export function GeoSurfaceOwnershipFactory(multiPolygons) {
   const geo = new GeoJSONLayer({
     title: "Surface Ownership",
     url: url,
+    minScale: 15000000,
   });
 
   return geo;
@@ -1410,6 +1418,7 @@ export function GeoWholesaleMarketsFactory(multiPolygons) {
   const geo = new GeoJSONLayer({
     title: "Wholesale Market Region",
     url: url,
+    minScale: 15000000,
   });
 
   return geo;
@@ -1455,6 +1464,7 @@ export function GeoElectricityTerritoriesFactory(multiPolygons) {
   const geo = new GeoJSONLayer({
     title: "Electricity Retail Territories",
     url: url,
+    minScale: 15000000,
   });
 
   return geo;
@@ -1544,6 +1554,7 @@ export function GeoEnergyCommunitiesFactory(multiPolygons) {
   const geo = new GeoJSONLayer({
     title: "Energy Communities",
     url: url,
+    minScale: 15000000,
     renderer: renderer,
     popupTemplate: template,
   });
@@ -1611,6 +1622,7 @@ export function GeoDisadvCommunitiesFactory(multiPolygons) {
   const geo = new GeoJSONLayer({
     title: "Disadvantaged Communities",
     url: url,
+    minScale: 15000000,
     renderer: renderer,
     popupTemplate: template,
   });
@@ -1680,6 +1692,7 @@ export function GeoMetropolitanFactory(multiPolygons) {
     title:
       "MSAs/non-MSAs that meet both the Fossil-Fuel Employment (FEE) threshold and the unemployment rate requirement",
     url: url,
+    minScale: 15000000,
     renderer: renderer,
     popupTemplate: template,
   });

@@ -36,6 +36,12 @@ function Layers() {
           <Typography variant="subtitle2">Layers</Typography>
         </AccordionSummary>
         <AccordionDetails>
+          <Typography variant="body">
+            Some layers are very dense, zoom in to explore their features.
+            <br />
+            <br />
+            For best results, select a maximum of 2 layers at one time.
+          </Typography>
           <List>
             {visibleLayers.map((layer, index) => {
               return (

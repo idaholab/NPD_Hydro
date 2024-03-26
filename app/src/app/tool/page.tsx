@@ -10,14 +10,7 @@ import { useState, useEffect } from "react";
 import { validate, query } from "./helpers";
 
 // Material
-import {
-  Box,
-  Button,
-  Divider,
-  Grid,
-  Skeleton,
-  Typography,
-} from "@mui/material";
+import { Box, Button, CircularProgress, Grid } from "@mui/material";
 
 // Icons
 import ChevronRight from "@mui/icons-material/ChevronRight";
@@ -208,17 +201,30 @@ function Tool() {
           </>
         ) : render && valid ? (
           <>
-            <Skeleton
-              variant="rectangular"
-              width={window.innerWidth / 1.5}
-              height={window.innerHeight / 1.75}
-            />
-            <br />
-            <Skeleton
-              variant="rectangular"
-              width={window.innerWidth / 1.5}
-              height={window.innerHeight / 2.75}
-            />
+            <Box>
+              <Box
+                sx={{
+                  width: window.innerWidth / 1.5,
+                  height: window.innerHeight / 1.75,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <CircularProgress size={"10rem"} thickness={1.5} />
+              </Box>
+              <Box
+                sx={{
+                  width: window.innerWidth / 1.5,
+                  height: window.innerHeight / 1.75,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <CircularProgress size={"10rem"} thickness={1.5} />
+              </Box>
+            </Box>
           </>
         ) : null}
       </Grid>
