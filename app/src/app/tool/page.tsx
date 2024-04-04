@@ -33,6 +33,7 @@ import ReactGA from "react-ga4";
 
 // Store
 import { useAppSelector } from "@/lib/hooks";
+import Footer from "../components/footer";
 
 function Tool() {
   // GA pageview
@@ -228,6 +229,7 @@ function Tool() {
           </>
         ) : null}
       </Grid>
+      <Footer font="black" />
     </Grid>
   );
 }

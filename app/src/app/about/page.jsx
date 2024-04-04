@@ -109,10 +109,10 @@ function About() {
       </Grid>
       <Grid item xs>
         <Grid container direction={mobile ? "column" : "row"}>
-          <Grid item xs={6}>
+          <Grid item xs={7}>
             <Logos background={"white"} />
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={5}>
             <Footer font={"black"} />
           </Grid>
         </Grid>

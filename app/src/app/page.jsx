@@ -139,10 +139,18 @@ function Home() {
             </Box>
           </Grid>
         ) : (
-          <Grid item sx={{ height: "90vh" }}>
+          <Grid
+            item
+            sx={{
+              height: "90vh",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             <Box sx={{ height: "90vh" }}>
               <video
-                src="/idahofalls-small.mp4"
+                src="/IdahoFalls-1080.mp4"
                 ref={vidRef}
                 muted
                 autoPlay
@@ -180,8 +188,7 @@ function Home() {
                       "1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000",
                   }}
                 >
-                  A non-powered dam assessment utility, for research
-                  professionals
+                  A non-powered dam national prioritization tool
                 </Typography>
                 <br />
                 <Box
@@ -232,10 +239,10 @@ function Home() {
           </Grid>
         )}
         <Grid container direction={mobile ? "column" : "row"}>
-          <Grid item xs={6}>
+          <Grid item xs={7}>
             <Logos background={"black"} />
           </Grid>
-          <Grid item xs={6} sx={{ background: "black" }}>
+          <Grid item xs={5} sx={{ background: "black" }}>
             <Footer font={"white"} />
           </Grid>
         </Grid>

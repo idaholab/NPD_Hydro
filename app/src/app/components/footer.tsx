@@ -14,7 +14,7 @@ function Footer(props: props) {
           width: "100%",
         }}
       >
-        <Box sx={{ padding: "0", fontSize: "0.75rem", color: props.font }}>
+        <Box sx={{ padding: "0", fontSize: "1rem", color: props.font }}>
           Contact us: <br />
           <Link
             sx={{ padding: "0", color: props.font }}

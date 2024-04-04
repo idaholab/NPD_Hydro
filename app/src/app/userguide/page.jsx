@@ -4,7 +4,7 @@
 import React from "react";
 
 // Hooks
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // Axios
 import axios from "axios";
@@ -20,6 +20,7 @@ import ReactGA from "react-ga4";
 
 // Components
 import Footer from "../components/footer";
+import Logos from "../components/logos";
 
 function UserGuide() {
   // GA pageview
@@ -28,6 +29,20 @@ function UserGuide() {
   // Toggles
   const [userGuide, setUserGuide] = useState();
   const [database, setDatabase] = useState();
+
+  // Window dimensions
+  let [mobile, setMobile] = useState(false);
+
+  useEffect(() => {
+    function handleResize() {
+      window.innerWidth < 768 ? setMobile(true) : setMobile(false); // Mobile Devices can't use the tool
+    }
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [mobile]);
 
   async function downloadUserGuide() {
     // GA event
@@ -141,7 +156,16 @@ function UserGuide() {
           ) : null}
         </Box>
         <br />
-        <Footer font={"black"} />
+      </Grid>
+      <Grid item xs>
+        <Grid container direction={mobile ? "column" : "row"}>
+          <Grid item xs={7}>
+            <Logos background={"white"} />
+          </Grid>
+          <Grid item xs={5}>
+            <Footer font={"black"} />
+          </Grid>
+        </Grid>
       </Grid>
     </Grid>
   );
