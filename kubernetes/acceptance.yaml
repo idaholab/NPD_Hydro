@@ -51,6 +51,9 @@ spec:
         - name: npd-app
           image: ${CI_REGISTRY}/${CI_REGISTRY_PATH}:react-prd-${GITHUB_RUN_NUMBER}
           imagePullPolicy: Always
+          env:
+            - name: DJANGO_HOST
+              value: npd-django-service
           ports:
             - containerPort: 3000
           resources:
@@ -155,8 +158,8 @@ spec:
             - containerPort: 80
           resources:
             limits:
-              cpu: "2500m"
-              memory: "1024M"
+              cpu: "3500m"
+              memory: "2048M"
       restartPolicy: Always
 ---
 # Service
