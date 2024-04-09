@@ -15,9 +15,6 @@ jobs:
         with:
           repository: Digital-Engineering/npd-next
           ref: development
-          lfs: true
-      - name: Git LFS Checkout
-        run: git lfs pull
 
       # Builds the required React app, Django app, and PostGIS database images
       - shell: bash
