@@ -51,7 +51,7 @@ function Questionnaire() {
   // States and Counties
   let [state, setState] = useState("");
   let [county, setCounty] = useState("");
-  let [counties, setCounties] = useState();
+  let [counties, setCounties] = useState([]);
 
   // Store
   const storeDispatch = useAppDispatch();
@@ -210,7 +210,7 @@ function Questionnaire() {
         state: state,
       })
       .then((response) => {
-        // console.log(respinse);
+        console.log(response);
         return response.data;
       })
       .catch((error) => {
@@ -310,7 +310,7 @@ function Questionnaire() {
                         </FormControl>
                         <br />
                         <br />
-                        {counties ? (
+                        {counties.length ? (
                           <FormControl fullWidth>
                             <InputLabel id="user-county-select">
                               County

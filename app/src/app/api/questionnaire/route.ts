@@ -9,13 +9,14 @@ const base = process.env.DJANGO_HOST!;
 export const POST = async (req: NextRequest, res: NextResponse) => {
   const url = new URL("questionnaire/questionnaire", base);
 
-  await axios
+  let response = await axios
     .get(`${url}`)
     .then((response) => {
-      return NextResponse.json(response.data);
+      return response.data;
     })
     .catch((error) => {
       console.log("Error: " + error);
-      return NextResponse.json(error);
+      return error;
     });
+  return NextResponse.json(response);
 };
