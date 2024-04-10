@@ -11,15 +11,15 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
   const url = new URL("npd/counties", base);
 
-  let counties = await axios
+  let response = await axios
     .post(`${url}`, body)
     .then((response) => {
-      return NextResponse.json(response.data);
+      return response.data;
     })
     .catch((error) => {
       console.log("Error: " + error);
-      return NextResponse.json(error);
+      return error;
     });
 
-  return NextResponse.json(counties);
+  return NextResponse.json(response);
 };

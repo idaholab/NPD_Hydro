@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          repository: Digital-Engineering/npd-next
+          repository: Digital-Engineering/npd-hydro
           ref: main
           lfs: true
       - name: Git LFS Checkout

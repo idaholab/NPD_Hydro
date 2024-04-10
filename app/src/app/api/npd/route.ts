@@ -11,14 +11,14 @@ export const POST = async (req: Request, res: NextResponse) => {
 
   const url = new URL("npd/inventory", base);
 
-  let dams = await axios
+  let response = await axios
     .post(`${url}`, JSON.stringify(body))
     .then((response) => {
       return response.data;
     })
     .catch((error) => {
       console.log("Error: " + error);
-      return NextResponse.json(error);
+      return error;
     });
-  return NextResponse.json(dams);
+  return NextResponse.json(response);
 };
