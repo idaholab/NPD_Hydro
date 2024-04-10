@@ -15,6 +15,9 @@ jobs:
         with:
           repository: Digital-Engineering/npd-next
           ref: development
+          lfs: true
+      - name: Git LFS Checkout
+        run: git lfs pull
 
       # Builds the required React app, Django app, and PostGIS database images
       - shell: bash
@@ -36,7 +39,6 @@ jobs:
           az acr build --registry $ACR_REGISTRY --image $ACR_PATH:django-dev-$GITHUB_RUN_NUMBER --file server/Dockerfiles/Dockerfile.prod server
           az acr build --registry $ACR_REGISTRY --image $ACR_PATH:npd-db-dev-$GITHUB_RUN_NUMBER --file gdb/Dockerfiles/Dockerfile.npd.prod gdb
           az acr build --registry $ACR_REGISTRY --image $ACR_PATH:npd-questionnaire-db-dev-$GITHUB_RUN_NUMBER --file gdb/Dockerfiles/Dockerfile.questionnaire.prod gdb
-
   kubernetes:
     needs: build
     runs-on: [self-hosted]
@@ -62,7 +64,6 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE/kubernetes
           envsubst < development.yaml > manifest.yaml
-
       # Initializes the kube context, introducing kubectl to the cluster
       - uses: azure/k8s-set-context@v3
         name: Configure K8s
