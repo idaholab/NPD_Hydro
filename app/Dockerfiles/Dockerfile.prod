@@ -1,4 +1,4 @@
-FROM node:latest AS npd-hydro-react
+FROM node:lts AS npd-hydro-react
 
 RUN apt-get update && apt-get -y upgrade
 
