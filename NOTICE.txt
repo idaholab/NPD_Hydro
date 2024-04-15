@@ -41,7 +41,7 @@ Authors:
 
 Nathan Woodruff
 Jacob Meng
-Kaki Tamaddun
+Kazi Tamaddun
 Sarah Barrows
 Juan Gallego-Calderon
 Thomas Mosier
