@@ -49,18 +49,6 @@ You can navigate to `http://localhost:5050` and enter the credentials from the `
 
 You'll need to register the server by naming it, and then typing in the required `POSTGRES` credentials from `/gdb/environment/.env.local.npd`.
 
-### Production
-
-##### Kubernetes
-
-This application runs on kubernetes. Take a look at the `/kubernetes` directory for workload information.
-
-You can also play around with the `minikube.yaml`.
-
-##### Deployments
-
-After deploying this application to the cluster, you have to shell into the `npd-django` pod and manually run the `migrations.sh` script. This step is required in lieu of some other streamlined solution, because there's no way for the `npd-django` pod to know about the status of the `npd-questionnaire-db` pod before executing any `entrypoint` scripts.
-
 ### Contact
 
 `nathan.woodruff@inl.gov`
