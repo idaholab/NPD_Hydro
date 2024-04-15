@@ -1,4 +1,4 @@
-version: "3"
+version: "3.7"
 services:
   app:
     build:
@@ -10,7 +10,7 @@ services:
     build:
       context: ./server
       dockerfile: ./Dockerfiles/Dockerfile.prod
-    command: ["tail", "-f", "/dev/null"]
+    entrypoint: ./entrypoint.local.sh
     ports:
       - "8000:80"
     volumes:

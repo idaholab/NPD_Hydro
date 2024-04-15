@@ -1,0 +1,53 @@
+This project contains code from Idaho National Laboratory
+Github URL https://github.com/idaholab/NPD_Hydro
+Licensed under GPL 3
+
+
+© 2024 Battelle Energy Alliance, LLC
+ALL RIGHTS RESERVED
+
+Prepared by Battelle Energy Alliance, LLC
+Under Contract No. DE-AC07-05ID14517
+With the U. S. Department of Energy
+
+NOTICE:  This computer software was prepared by Battelle Energy
+Alliance, LLC, under Contract No. AC07-05ID14517 and 
+Pacific Northwest National Laboratory under Contract No. DE-AC05-76RL01830,
+hereinafter the Contractors, with the United States (U. S.) Department of
+Energy (DOE).  The Government is granted for itself and others acting on
+its behalf a nonexclusive, paid-up, irrevocable worldwide license in this
+data to reproduce, prepare derivative works, and perform publicly and
+display publicly, by or on behalf of the Government. There is provision for
+the possible extension of the term of this license.  Subsequent to that
+period or any extension granted, the Government is granted for itself and
+others acting on its behalf a nonexclusive, paid-up, irrevocable worldwide
+license in this data to reproduce, prepare derivative works, distribute
+copies to the public, perform publicly and display publicly, and to permit
+others to do so.  The specific term of the license can be identified by
+inquiry made to Contractors or DOE.  NEITHER THE UNITED STATES NOR THE UNITED
+STATES DEPARTMENT OF ENERGY, NOR CONTRACTORS MAKES ANY WARRANTY, EXPRESS OR
+IMPLIED, OR ASSUMES ANY LIABILITY OR RESPONSIBILITY FOR THE USE, ACCURACY,
+COMPLETENESS, OR USEFULNESS OR ANY INFORMATION, APPARATUS, PRODUCT, OR
+PROCESS DISCLOSED, OR REPRESENTS THAT ITS USE WOULD NOT INFRINGE PRIVATELY
+OWNED RIGHTS.
+
+
+Reference herein to any specific commercial product, process, or service by trade name, trademark, manufacturer, or 
+otherwise does not necessarily constitute or imply its endorsement, recommendation, or favoring by the United States 
+Government or any agency thereof, Battelle Energy Alliance, or Battelle Memorial Institute. The views and opinions of 
+authors expressed herein do not necessarily state or reflect those of the United States Government or any agency thereof.
+
+Authors:
+
+Nathan Woodruff
+Jacob Meng
+Kaki Tamaddun
+Sarah Barrows
+Juan Gallego-Calderon
+Thomas Mosier
+Ryan Harnish
+Muhammad Usman
+Daniel Arai
+
+
+
